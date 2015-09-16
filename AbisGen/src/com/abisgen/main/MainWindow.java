@@ -3,6 +3,8 @@ package com.abisgen.main;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,6 +18,13 @@ public class MainWindow extends Frame
     private WinAdapter winadapter = new WinAdapter();
     private Frame self;
     private TextArea ta_log;
+    private int from_y,from_m,to_y,to_m;
+    
+    private Choice ch_from_y = new Choice();
+    private Choice ch_from_m = new Choice();
+    private Choice ch_to_y = new Choice();
+    private Choice ch_to_m = new Choice();
+
     
     public InputParams inputparams;
     
@@ -47,12 +56,55 @@ public class MainWindow extends Frame
          c.weightx = 0.8;
          c.weighty = 0.3;
          
-         Panel p_input = new Panel();
+         Panel p_input = new Panel(new GridLayout(1,2));
          c.fill = GridBagConstraints.HORIZONTAL;
          c.gridx = 0;
          c.gridy = 0;
          c.anchor = GridBagConstraints.NORTHWEST;
+         p_input.setMaximumSize(new Dimension(640,200));
          this.add(p_input,c);
+              
+               Panel p = new Panel(new FlowLayout());
+               p_input.add(p);
+               c.weightx = 1;
+               c.weighty = 1;
+               Label l = new Label("Period from ");
+               c.fill = GridBagConstraints.NONE;
+               c.gridx = 0;
+               c.gridy = 0;
+               c.anchor = GridBagConstraints.WEST;
+               p_input.add(l, c);
+               
+               for (Integer i=2014;i<2019;i++) {
+                   ch_from_y.addItem(i.toString());
+                   ch_to_y.addItem(i.toString());
+               }
+               
+               for (Integer i=1;i<=12;i++) {
+                   ch_from_m.addItem(i.toString());
+                   ch_to_m.addItem(i.toString());
+               }
+               
+               ch_from_y.addItemListener(new ItemListener(){
+                      public void itemStateChanged(ItemEvent arg0) { from_y = Integer.valueOf(ch_from_y.getSelectedItem()); }
+               });
+               ch_from_m.addItemListener(new ItemListener(){
+                      public void itemStateChanged(ItemEvent arg0) { from_m = Integer.valueOf(ch_from_m.getSelectedItem()); }
+               });
+               ch_to_y.addItemListener(new ItemListener(){
+                      public void itemStateChanged(ItemEvent arg0) { to_y = Integer.valueOf(ch_to_y.getSelectedItem()); }
+               });
+               ch_to_m.addItemListener(new ItemListener(){
+                      public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
+               });
+               
+               p_input.add(ch_from_y, c);
+               p_input.add(ch_from_m, c);
+               p_input.add(new Label(" to "), c);
+               p_input.add(ch_to_y, c);
+               p_input.add(ch_to_m, c);
+              
+               
          
          Panel p_buttons = new Panel(new GridLayout(1,3));
          c.weightx = 0.2;
@@ -74,7 +126,7 @@ public class MainWindow extends Frame
           });
          p_buttons.add(btnExit);
          
-         Panel p_log = new Panel(new GridLayout(1,1));
+         Panel p_log = new Panel(new BorderLayout());
          c.weightx = 1;
          c.weighty = 0.7;
          c.fill = GridBagConstraints.BOTH;
@@ -85,10 +137,9 @@ public class MainWindow extends Frame
          this.add(p_log,c);
          
          ta_log = new TextArea();
-         
-         p_log.add(ta_log);
-        
-         
+         p_log.add(ta_log,BorderLayout.CENTER);
          
     }
+    
+    
 }
