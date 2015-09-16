@@ -9,10 +9,10 @@ import java.sql.Statement;
 //"jdbc:db2://10.130.33.3:50008/testvev", "techuser", "123start")
 public class db2interface {
 	private String driver = "jdbc:db2://";
-	private String server = "10.130.33.3:50008/";
-	private String database = "testvev";
-	private String UID = "techuser";
-	private String PWD = "123start";
+	private String server = "/";
+	private String database = "";
+	private String UID = "";
+	private String PWD = "";
 	
 	private Connection con;
 	
