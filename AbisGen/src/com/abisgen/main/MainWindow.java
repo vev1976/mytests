@@ -50,33 +50,22 @@ public class MainWindow extends Frame
     
     private void prepareGUI()
     {
-         this.setLayout(new GridBagLayout());
+         this.setLayout(new BorderLayout());
          GridBagConstraints c = new GridBagConstraints();
          
-         c.weightx = 0.8;
-         c.weighty = 0.3;
-         
+         Panel p_top = new Panel(new BorderLayout());
+         this.add(p_top, BorderLayout.PAGE_START);
          Panel p_input = new Panel(new GridLayout(1,2));
-         c.fill = GridBagConstraints.HORIZONTAL;
-         
-         c.gridx = 0;
-         c.gridy = 0;
-         c.anchor = GridBagConstraints.NORTHWEST;
+         p_top.add(p_input, BorderLayout.CENTER);
+
          p_input.setMinimumSize(new Dimension(640,80));
          p_input.setPreferredSize(new Dimension(640,80));
          p_input.setMaximumSize(new Dimension(640,80));
-         this.add(p_input,c);
-              
+         
                Panel p = new Panel(new FlowLayout(FlowLayout.LEADING));
                p_input.add(p);
-               c.weightx = 1;
-               c.weighty = 1;
                Label l = new Label("Period from ");
                l.setAlignment(Label.LEFT);
-               c.fill = GridBagConstraints.NONE;
-               c.gridx = 0;
-               c.gridy = 0;
-               c.anchor = GridBagConstraints.WEST;
                p.add(l, c);
            
                for (Integer i=2014;i<2019;i++) {
@@ -100,28 +89,23 @@ public class MainWindow extends Frame
                });
                ch_to_m.addItemListener(new ItemListener(){
                       public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
-               });
-               
+               });             
                p.add(ch_from_y, c);
                p.add(ch_from_m, c);
                p.add(new Label(" to "), c);
                p.add(ch_to_y, c);
-               p.add(ch_to_m, c);
-              
-               
+               p.add(ch_to_m, c);                             
          
          Panel p_buttons = new Panel(new GridLayout(1,3));
-         c.weightx = 0.2;
-         c.weighty = 0.3;
-         c.fill = GridBagConstraints.NONE;
-         c.gridx = 1;
-         c.gridy = 0;
-         c.anchor = GridBagConstraints.NORTHEAST;
-         this.add(p_buttons,c);
+         p_top.add(p_buttons, BorderLayout.EAST);
+         p_buttons.setMinimumSize(new Dimension(60,80));
+         p_buttons.setPreferredSize(new Dimension(60,80));
+         p_buttons.setMaximumSize(new Dimension(60,80));
          
+         p_buttons.getInsets().top = 50;
+
          Button btnExit = new Button();
          btnExit.setLabel("Exit");
-    //     btnCancel.setPreferredSize(new Dimension(70,22));
          btnExit.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e)
              {
@@ -131,15 +115,7 @@ public class MainWindow extends Frame
          p_buttons.add(btnExit);
          
          Panel p_log = new Panel(new BorderLayout());
-         c.weightx = 1;
-         c.weighty = 0.7;
-         c.fill = GridBagConstraints.BOTH;
-         c.gridx = 0;
-         c.gridy = 1;
-         c.gridwidth = 2;
-         c.anchor = GridBagConstraints.CENTER;
-         this.add(p_log,c);
-         
+         this.add(p_log,BorderLayout.CENTER);       
          ta_log = new TextArea();
          p_log.add(ta_log,BorderLayout.CENTER);
          
