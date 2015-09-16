@@ -44,11 +44,11 @@ public class MainWindow extends Frame
          Dimension screen_dim = Toolkit.getDefaultToolkit().getScreenSize();
          this.setLocation((screen_dim.width-win_width)/2, (screen_dim.height-win_hight)/2);
          this.addWindowListener(winadapter);
-         this.BuildFace();
+         this.prepareGUI();
          
     }
     
-    private void BuildFace()
+    private void prepareGUI()
     {
          this.setLayout(new GridBagLayout());
          GridBagConstraints c = new GridBagConstraints();
@@ -58,6 +58,7 @@ public class MainWindow extends Frame
          
          Panel p_input = new Panel(new GridLayout(1,2));
          c.fill = GridBagConstraints.HORIZONTAL;
+         
          c.gridx = 0;
          c.gridy = 0;
          c.anchor = GridBagConstraints.NORTHWEST;
