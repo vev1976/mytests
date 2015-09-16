@@ -61,20 +61,23 @@ public class MainWindow extends Frame
          c.gridx = 0;
          c.gridy = 0;
          c.anchor = GridBagConstraints.NORTHWEST;
-         p_input.setMaximumSize(new Dimension(640,200));
+         p_input.setMinimumSize(new Dimension(640,80));
+         p_input.setPreferredSize(new Dimension(640,80));
+         p_input.setMaximumSize(new Dimension(640,80));
          this.add(p_input,c);
               
-               Panel p = new Panel(new FlowLayout());
+               Panel p = new Panel(new FlowLayout(FlowLayout.LEADING));
                p_input.add(p);
                c.weightx = 1;
                c.weighty = 1;
                Label l = new Label("Period from ");
+               l.setAlignment(Label.LEFT);
                c.fill = GridBagConstraints.NONE;
                c.gridx = 0;
                c.gridy = 0;
                c.anchor = GridBagConstraints.WEST;
-               p_input.add(l, c);
-               
+               p.add(l, c);
+           
                for (Integer i=2014;i<2019;i++) {
                    ch_from_y.addItem(i.toString());
                    ch_to_y.addItem(i.toString());
@@ -98,11 +101,11 @@ public class MainWindow extends Frame
                       public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
                });
                
-               p_input.add(ch_from_y, c);
-               p_input.add(ch_from_m, c);
-               p_input.add(new Label(" to "), c);
-               p_input.add(ch_to_y, c);
-               p_input.add(ch_to_m, c);
+               p.add(ch_from_y, c);
+               p.add(ch_from_m, c);
+               p.add(new Label(" to "), c);
+               p.add(ch_to_y, c);
+               p.add(ch_to_m, c);
               
                
          
