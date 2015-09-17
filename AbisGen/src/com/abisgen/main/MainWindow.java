@@ -5,8 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import javax.swing.BoxLayout;
 
 
 public class MainWindow extends Frame
@@ -19,19 +23,20 @@ public class MainWindow extends Frame
     private Frame self;
     private TextArea ta_log;
     private int from_y,from_m,to_y,to_m;
+    private String outfolder;
     
     private Choice ch_from_y = new Choice();
     private Choice ch_from_m = new Choice();
     private Choice ch_to_y = new Choice();
     private Choice ch_to_m = new Choice();
-
+    private TextField tfFolder = new TextField();
     
     public InputParams inputparams;
     
     private class WinAdapter extends WindowAdapter
     {
         public void windowClosing(WindowEvent windowEvent){
-            System.exit(0);
+            onClose();
          }
     }
     
@@ -45,7 +50,17 @@ public class MainWindow extends Frame
          this.setLocation((screen_dim.width-win_width)/2, (screen_dim.height-win_hight)/2);
          this.addWindowListener(winadapter);
          this.prepareGUI();
-         
+    }
+    
+    public void onClose()
+    {
+         System.exit(0);
+    }
+    
+    public void Calculate()
+    {
+        ta_log.append("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m +"\n");
+        ta_log.append("Folder: "+ outfolder +"\n");
     }
     
     private void prepareGUI()
@@ -55,7 +70,7 @@ public class MainWindow extends Frame
          
          Panel p_top = new Panel(new BorderLayout());
          this.add(p_top, BorderLayout.PAGE_START);
-         Panel p_input = new Panel(new GridLayout(1,2));
+         Panel p_input = new Panel(new GridLayout(2,1));
          p_top.add(p_input, BorderLayout.CENTER);
 
          p_input.setMinimumSize(new Dimension(640,80));
@@ -64,7 +79,7 @@ public class MainWindow extends Frame
          
                Panel p = new Panel(new FlowLayout(FlowLayout.LEADING));
                p_input.add(p);
-               Label l = new Label("Period from ");
+               Label l = new Label("Period from   ");
                l.setAlignment(Label.LEFT);
                p.add(l, c);
            
@@ -89,34 +104,78 @@ public class MainWindow extends Frame
                });
                ch_to_m.addItemListener(new ItemListener(){
                       public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
-               });             
+               });
                p.add(ch_from_y, c);
                p.add(ch_from_m, c);
                p.add(new Label(" to "), c);
                p.add(ch_to_y, c);
-               p.add(ch_to_m, c);                             
+               p.add(ch_to_m, c);
+               
+               p = new Panel(new FlowLayout(FlowLayout.LEADING));
+               p_input.add(p);
+               l = new Label("Output folder ");
+               l.setAlignment(Label.LEFT);
+               p.add(l);
+               
+               
+               tfFolder.setPreferredSize(new Dimension(380,25));
+               tfFolder.addTextListener(new TextListener() {
+                        public void textValueChanged(TextEvent arg0) { outfolder = tfFolder.getText(); }
+               });
+               p.add(tfFolder);
+               
+               Button btnFolderChooser = new Button("...");
+               btnFolderChooser.addActionListener(new ActionListener(){
+                      public void actionPerformed(ActionEvent arg0) {
+                          FileDialog fd = new FileDialog(self, "Choose a folder", FileDialog.SAVE);
+                          fd.setVisible(true);
+                          String foldername = fd.getDirectory();
+                          if (foldername!=null) {
+                              tfFolder.setText(foldername);
+                          }
+                      }
+               });
+               p.add(btnFolderChooser);
+               
          
-         Panel p_buttons = new Panel(new GridLayout(1,3));
+         Panel p_buttons = new Panel();
+         p_buttons.setLayout(new BoxLayout(p_buttons,BoxLayout.PAGE_AXIS));
          p_top.add(p_buttons, BorderLayout.EAST);
-         p_buttons.setMinimumSize(new Dimension(60,80));
-         p_buttons.setPreferredSize(new Dimension(60,80));
-         p_buttons.setMaximumSize(new Dimension(60,80));
          
-         p_buttons.getInsets().top = 50;
-
+         Dimension p_buttons_dim = new Dimension(90,80);
+         Dimension button_dim    = new Dimension(80,30);
+         
+         p_buttons.setMinimumSize(p_buttons_dim);
+         p_buttons.setPreferredSize(p_buttons_dim);
+         p_buttons.setMaximumSize(p_buttons_dim);
+       
          Button btnExit = new Button();
          btnExit.setLabel("Exit");
+         btnExit.setMaximumSize(button_dim);
          btnExit.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e)
              {
-                 System.exit(0);
+                 onClose();
              }
           });
          p_buttons.add(btnExit);
          
+         Button btnCalc = new Button();
+         btnCalc.setLabel("Calculate");
+         btnCalc.setMaximumSize(button_dim);
+         btnCalc.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e)
+             {
+                 Calculate();
+             }
+          });
+         p_buttons.add(btnCalc);
+         
+         
          Panel p_log = new Panel(new BorderLayout());
-         this.add(p_log,BorderLayout.CENTER);       
+         this.add(p_log,BorderLayout.CENTER);
          ta_log = new TextArea();
+         ta_log.setEditable(false);
          p_log.add(ta_log,BorderLayout.CENTER);
          
     }
