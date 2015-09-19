@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.Box;
 
 
 public class MainWindow extends Frame
@@ -81,7 +82,7 @@ public class MainWindow extends Frame
                p_input.add(p);
                Label l = new Label("Period from   ");
                l.setAlignment(Label.LEFT);
-               p.add(l, c);
+               p.add(l);
            
                for (Integer i=2014;i<2019;i++) {
                    ch_from_y.addItem(i.toString());
@@ -105,11 +106,11 @@ public class MainWindow extends Frame
                ch_to_m.addItemListener(new ItemListener(){
                       public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
                });
-               p.add(ch_from_y, c);
-               p.add(ch_from_m, c);
-               p.add(new Label(" to "), c);
-               p.add(ch_to_y, c);
-               p.add(ch_to_m, c);
+               p.add(ch_from_y);
+               p.add(ch_from_m);
+               p.add(new Label(" to "));
+               p.add(ch_to_y);
+               p.add(ch_to_m);
                
                p = new Panel(new FlowLayout(FlowLayout.LEADING));
                p_input.add(p);
@@ -158,6 +159,9 @@ public class MainWindow extends Frame
                  onClose();
              }
           });
+         
+         Component verticalStrut = Box.createVerticalStrut(5);
+         p_buttons.add(verticalStrut);
          p_buttons.add(btnExit);
          
          Button btnCalc = new Button();
@@ -169,6 +173,9 @@ public class MainWindow extends Frame
                  Calculate();
              }
           });
+         
+         Component verticalStrut_1 = Box.createVerticalStrut(5);
+         p_buttons.add(verticalStrut_1);
          p_buttons.add(btnCalc);
          
          
