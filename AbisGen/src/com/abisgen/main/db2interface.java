@@ -11,14 +11,25 @@ public class db2interface {
     private String driver = "jdbc:db2://";
     private String server = "/";
     private String database = "";
+    private String jdbcConn_string = "";
     private String UID = "";
     private String PWD = "";
-    
+    private static db2interface instance;
     private Connection con;
     
-    public db2interface() throws SQLException
+    private db2interface(InputParams inp) throws SQLException
     {
-        con = DriverManager.getConnection(driver+server+database, UID, PWD);
+        UID = inp.getUserName();
+        PWD = inp.getPassword();
+        jdbcConn_string = inp.getDB_Connection_String();
+        con = DriverManager.getConnection(jdbcConn_string, UID, PWD);
+    }
+    
+    public static db2interface getInstance(InputParams inp) throws SQLException{
+        if (instance==null) {
+            instance = new db2interface(inp);
+        }
+           return instance;
     }
     
     public void ExecSQL(String sql) throws SQLException

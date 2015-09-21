@@ -5,16 +5,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Calendar;
 
 import javax.swing.BoxLayout;
 import javax.swing.Box;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.text.MaskFormatter;
 
 
-public class MainWindow extends Frame
+public class MainWindow extends JFrame
 {
     private static final long serialVersionUID = 6506372392773398608L;
     
@@ -23,16 +35,19 @@ public class MainWindow extends Frame
     private WinAdapter winadapter = new WinAdapter();
     private Frame self;
     private TextArea ta_log;
-    private int from_y,from_m,to_y,to_m;
+    private int from_y = 2014,from_m = 1, to_y = 2014, to_m = 1;
     private String outfolder;
+    private int clientNumber;
     
     private Choice ch_from_y = new Choice();
     private Choice ch_from_m = new Choice();
     private Choice ch_to_y = new Choice();
     private Choice ch_to_m = new Choice();
     private TextField tfFolder = new TextField();
+    private JFormattedTextField tfClientNum = new JFormattedTextField();
     
     public InputParams inputparams;
+ 
     
     private class WinAdapter extends WindowAdapter
     {
@@ -60,23 +75,46 @@ public class MainWindow extends Frame
     
     public void Calculate()
     {
-        ta_log.append("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m +"\n");
+        clientNumber = Integer.valueOf(tfClientNum.getText());
+        ta_log.append("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m + " " + clientNumber + "\n");
         ta_log.append("Folder: "+ outfolder +"\n");
+        Calendar abzugdatum = Calendar.getInstance();
+
+        db2interface db = null;
+        try {
+            db = db2interface.getInstance(inputparams);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        
+        while ((from_y*100 + from_m)<=(to_y*100 + to_m))
+        {
+         
+         abzugdatum.set(from_y, from_m - 1, 01);
+         ta_log.append(String.format("Generatig data for 01/%02d/%d was started!\n",from_m,from_y));
+         genfiles gn = new genfiles(outfolder,abzugdatum.getTime(),100,db);
+         gn.generate();
+         ta_log.append(String.format("Data for 01/%02d/%d has been generated!\n",from_m,from_y));
+
+         from_m = (from_m==12?1:from_m+1);
+         from_y = (from_m==1?from_y+1:from_y);
+        }
+        
     }
     
     private void prepareGUI()
     {
-         this.setLayout(new BorderLayout());
-         GridBagConstraints c = new GridBagConstraints();
-         
+         getContentPane().setLayout(new BorderLayout());
+          
          Panel p_top = new Panel(new BorderLayout());
-         this.add(p_top, BorderLayout.PAGE_START);
-         Panel p_input = new Panel(new GridLayout(2,1));
+         getContentPane().add(p_top, BorderLayout.PAGE_START);
+         Panel p_input = new Panel(new GridLayout(3,1));
          p_top.add(p_input, BorderLayout.CENTER);
 
-         p_input.setMinimumSize(new Dimension(640,80));
-         p_input.setPreferredSize(new Dimension(640,80));
-         p_input.setMaximumSize(new Dimension(640,80));
+         p_input.setMinimumSize(new Dimension(640,100));
+         p_input.setPreferredSize(new Dimension(640,100));
+         p_input.setMaximumSize(new Dimension(640,100));
          
                Panel p = new Panel(new FlowLayout(FlowLayout.LEADING));
                p_input.add(p);
@@ -106,24 +144,29 @@ public class MainWindow extends Frame
                ch_to_m.addItemListener(new ItemListener(){
                       public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
                });
+               ch_from_y.select(0);
+               ch_from_m.select(0);
+               ch_to_y.select(0);
+               ch_to_m.select(0);
+               
                p.add(ch_from_y);
                p.add(ch_from_m);
                p.add(new Label(" to "));
                p.add(ch_to_y);
                p.add(ch_to_m);
                
-               p = new Panel(new FlowLayout(FlowLayout.LEADING));
-               p_input.add(p);
+               Panel p_1 = new Panel(new FlowLayout(FlowLayout.LEADING));
+               p_input.add(p_1);
                l = new Label("Output folder ");
                l.setAlignment(Label.LEFT);
-               p.add(l);
+               p_1.add(l);
                
                
                tfFolder.setPreferredSize(new Dimension(380,25));
                tfFolder.addTextListener(new TextListener() {
                         public void textValueChanged(TextEvent arg0) { outfolder = tfFolder.getText(); }
                });
-               p.add(tfFolder);
+               p_1.add(tfFolder);
                
                Button btnFolderChooser = new Button("...");
                btnFolderChooser.addActionListener(new ActionListener(){
@@ -136,9 +179,28 @@ public class MainWindow extends Frame
                           }
                       }
                });
-               p.add(btnFolderChooser);
+               p_1.add(btnFolderChooser);
                
-         
+               Panel p_2 = new Panel(new FlowLayout(FlowLayout.LEADING));
+               p_input.add(p_2);
+               l = new Label("Number of clients ");
+               l.setAlignment(Label.LEFT);
+               p_2.add(l);
+
+               tfClientNum.setPreferredSize(new Dimension(75,25));
+               tfClientNum.setColumns(6);
+               try
+                {
+                MaskFormatter mask1 = new MaskFormatter("######");
+                mask1.setPlaceholderCharacter('0');
+                mask1.install(tfClientNum);
+                }
+               catch (ParseException e1)
+                {
+                   e1.printStackTrace();
+                }
+               p_2.add(tfClientNum);
+               
          Panel p_buttons = new Panel();
          p_buttons.setLayout(new BoxLayout(p_buttons,BoxLayout.PAGE_AXIS));
          p_top.add(p_buttons, BorderLayout.EAST);
@@ -180,11 +242,11 @@ public class MainWindow extends Frame
          
          
          Panel p_log = new Panel(new BorderLayout());
-         this.add(p_log,BorderLayout.CENTER);
+         getContentPane().add(p_log,BorderLayout.CENTER);
          ta_log = new TextArea();
          ta_log.setEditable(false);
          p_log.add(ta_log,BorderLayout.CENTER);
-         
+ 
     }
     
     
