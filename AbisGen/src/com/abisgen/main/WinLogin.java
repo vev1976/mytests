@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class WinLogin extends Dialog
  {
-    private int win_width = 450;
+    private int win_width = 550;
     private int win_hight = 190;
     
     private Label     lbLogin;
@@ -35,7 +35,6 @@ public class WinLogin extends Dialog
     private Button btnOk;
     private Button btnCancel;
     
-    public InputParams result;
     public int modalresult;
     private Dialog self;
     
@@ -49,7 +48,7 @@ public class WinLogin extends Dialog
         this.setLayout(new GridBagLayout());
         this.self = this;
         GridBagConstraints c = new GridBagConstraints();
-        
+        Property prop = Property.getInstance();
         
         c.weightx=0.3;
         c.weighty=0.3;
@@ -65,7 +64,7 @@ public class WinLogin extends Dialog
         
         c.weightx=0.7;
         
-        tfLogin = new TextField();
+        tfLogin = new TextField(prop.getProperty("UserName", ""));
         tfLogin.setPreferredSize(new Dimension(100,25));
         c.anchor = GridBagConstraints.WEST;
         c.gridx = 1;
@@ -102,7 +101,7 @@ public class WinLogin extends Dialog
         c.fill=GridBagConstraints.HORIZONTAL;
         this.add(lbConString,c);
         
-        tfConString = new TextField();
+        tfConString = new TextField(prop.getProperty("ConnectionString", ""));
         tfConString.setPreferredSize(new Dimension(300,25));
         c.anchor = GridBagConstraints.WEST;
         c.gridx = 1;
@@ -129,7 +128,9 @@ public class WinLogin extends Dialog
     //    btnOk.setPreferredSize(new Dimension(70,22));
         btnOk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                result = new InputParams(tfLogin.getText(), tfPassword.getText(), tfConString.getText());
+                InputParams.setUserName(tfLogin.getText());
+                InputParams.setPassword(tfPassword.getText());
+                InputParams.setDB_Connection_String(tfConString.getText());
                 modalresult = 1;
                 self.setVisible(false);
             }

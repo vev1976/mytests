@@ -5,25 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.Calendar;
 
 import javax.swing.BoxLayout;
 import javax.swing.Box;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.text.MaskFormatter;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 public class MainWindow extends JFrame
@@ -36,18 +30,16 @@ public class MainWindow extends JFrame
     private Frame self;
     private TextArea ta_log;
     private int from_y = 2014,from_m = 1, to_y = 2014, to_m = 1;
-    private String outfolder;
-    private int clientNumber;
+    private String outfolder = "";
+    private int clientNumber = 0;
     
     private Choice ch_from_y = new Choice();
     private Choice ch_from_m = new Choice();
     private Choice ch_to_y = new Choice();
     private Choice ch_to_m = new Choice();
     private TextField tfFolder = new TextField();
-    private JFormattedTextField tfClientNum = new JFormattedTextField();
+    private JSpinner tfClientNum = new JSpinner();
     
-    public InputParams inputparams;
- 
     
     private class WinAdapter extends WindowAdapter
     {
@@ -70,30 +62,31 @@ public class MainWindow extends JFrame
     
     public void onClose()
     {
+         Property prop = Property.getInstance();
+         prop.setProperty("UserName", InputParams.getUserName());
+         prop.setProperty("ConnectionString", InputParams.getDB_Connection_String());
+         prop.setProperty("OutputFolder", outfolder);
+         prop.setProperty("Number_of_clients", String.valueOf(clientNumber));
+         prop.saveProperties();
+
          System.exit(0);
     }
     
-    public void Calculate()
+    public void calculate()
     {
-        clientNumber = Integer.valueOf(tfClientNum.getText());
+        //clientNumber = (int) tfClientNum.getValue();
         ta_log.append("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m + " " + clientNumber + "\n");
         ta_log.append("Folder: "+ outfolder +"\n");
         Calendar abzugdatum = Calendar.getInstance();
 
-        db2interface db = null;
-        try {
-            db = db2interface.getInstance(inputparams);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
+        DB2_Interface db = DB2_Interface.getInstance();
+    
         
         while ((from_y*100 + from_m)<=(to_y*100 + to_m))
         {
-         
          abzugdatum.set(from_y, from_m - 1, 01);
          ta_log.append(String.format("Generatig data for 01/%02d/%d was started!\n",from_m,from_y));
-         genfiles gn = new genfiles(outfolder,abzugdatum.getTime(),100,db);
+         GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),100,db);
          gn.generate();
          ta_log.append(String.format("Data for 01/%02d/%d has been generated!\n",from_m,from_y));
 
@@ -105,10 +98,13 @@ public class MainWindow extends JFrame
     
     private void prepareGUI()
     {
+         Property prop = Property.getInstance();
+         
          getContentPane().setLayout(new BorderLayout());
-          
+         
          Panel p_top = new Panel(new BorderLayout());
          getContentPane().add(p_top, BorderLayout.PAGE_START);
+         
          Panel p_input = new Panel(new GridLayout(3,1));
          p_top.add(p_input, BorderLayout.CENTER);
 
@@ -166,6 +162,7 @@ public class MainWindow extends JFrame
                tfFolder.addTextListener(new TextListener() {
                         public void textValueChanged(TextEvent arg0) { outfolder = tfFolder.getText(); }
                });
+               tfFolder.setText(prop.getProperty("OutputFolder",""));
                p_1.add(tfFolder);
                
                Button btnFolderChooser = new Button("...");
@@ -188,25 +185,19 @@ public class MainWindow extends JFrame
                p_2.add(l);
 
                tfClientNum.setPreferredSize(new Dimension(75,25));
-               tfClientNum.setColumns(6);
-               try
-                {
-                MaskFormatter mask1 = new MaskFormatter("######");
-                mask1.setPlaceholderCharacter('0');
-                mask1.install(tfClientNum);
-                }
-               catch (ParseException e1)
-                {
-                   e1.printStackTrace();
-                }
+               tfClientNum.setModel(new SpinnerNumberModel(Integer.parseInt( prop.getProperty( "Number_of_clients", "0")), 10, 100000, 1));
+               tfClientNum.addChangeListener(new ChangeListener() {
+                public void stateChanged(ChangeEvent e) {clientNumber = (int) tfClientNum.getValue();}
+               });
+               
                p_2.add(tfClientNum);
                
          Panel p_buttons = new Panel();
          p_buttons.setLayout(new BoxLayout(p_buttons,BoxLayout.PAGE_AXIS));
          p_top.add(p_buttons, BorderLayout.EAST);
          
-         Dimension p_buttons_dim = new Dimension(90,80);
-         Dimension button_dim    = new Dimension(80,30);
+         Dimension p_buttons_dim = new Dimension(120,80);
+         Dimension button_dim    = new Dimension(110,30);
          
          p_buttons.setMinimumSize(p_buttons_dim);
          p_buttons.setPreferredSize(p_buttons_dim);
@@ -232,7 +223,7 @@ public class MainWindow extends JFrame
          btnCalc.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e)
              {
-                 Calculate();
+                 calculate();
              }
           });
          
@@ -242,6 +233,7 @@ public class MainWindow extends JFrame
          
          
          Panel p_log = new Panel(new BorderLayout());
+        
          getContentPane().add(p_log,BorderLayout.CENTER);
          ta_log = new TextArea();
          ta_log.setEditable(false);

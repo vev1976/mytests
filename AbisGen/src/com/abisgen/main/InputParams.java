@@ -1,50 +1,50 @@
 package com.abisgen.main;
 
 public class InputParams {
-    private String username;
-    private String password;
-    private String db_connection_string;
+    private static String username;
+    private static String password;
+    private static String db_connection_string;
     
     public InputParams()
     {
     }
-
-    
-    public InputParams(String username, String password, String db_connection_string)
+   
+ /*   public InputParams(String username, String password, String db_connection_string)
     {
         this.username = username;
         setPassword(password);
         this.db_connection_string = db_connection_string;
     }
-    
-    public String getUserName ()
+ */
+
+    public static String getUserName ()
     {
         return username;
     }
 
-    public void setUserName (String username)
+    public static void setUserName (String _username)
     {
-        this.username = username;
+        username = _username;
     }
 
-    public String getPassword ()
+    public static String getPassword ()
     {
         return password;
     }
     
-    public void setPassword (String password)
+    public static void setPassword (String _password)
     {
-        this.password = password;
+        password = _password;
     }
     
-    public String getDB_Connection_String()
+    public static String getDB_Connection_String()
     {
-        return this.db_connection_string;
+        return db_connection_string;
     }
 
-    public void setDB_Connection_String(String DB_Connection_String)
+    public static void setDB_Connection_String(String _db_Connection_String)
     {
-        this.db_connection_string = DB_Connection_String;
+        db_connection_string = _db_Connection_String;
     }
 
     

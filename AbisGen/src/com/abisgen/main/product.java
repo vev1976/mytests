@@ -40,7 +40,7 @@ public class product {
 	
 	private account acc;
 	
-	public product(Date abzugdatum,client cl, int prod_group, int prod_num)
+	public product(Date abzugdatum,Client cl, int prod_group, int prod_num)
 	{
 		int AccNumber;
 		
