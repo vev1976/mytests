@@ -1,0 +1,72 @@
+2015-09-23 13:01:54 INFO  common:17 - Application is started!
+2015-09-23 14:02:20 INFO  common:17 - Application is started!
+2015-09-25 14:31:20 INFO  DB2_Interface:42 - Application has been connected to database!
+2015-09-25 14:31:20 INFO  StartClass:19 - Application has been started!
+2015-09-25 14:55:01 ERROR DB2_Interface:47 - The ERROR occurs during connecting to DB
+com.ibm.db2.jcc.am.SqlInvalidAuthorizationSpecException: [jcc][t4][2013][11249][4.19.26] Connection authorization failure occurred.  Reason: User ID or Password invalid. ERRORCODE=-4214, SQLSTATE=28000
+	at com.ibm.db2.jcc.am.kd.a(Unknown Source)
+	at com.ibm.db2.jcc.am.kd.a(Unknown Source)
+	at com.ibm.db2.jcc.am.kd.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.f(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.b(Unknown Source)
+	at com.ibm.db2.jcc.t4.z.r(Unknown Source)
+	at com.ibm.db2.jcc.t4.z.k(Unknown Source)
+	at com.ibm.db2.jcc.t4.z.c(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.k(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.b(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.b(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.<init>(Unknown Source)
+	at com.ibm.db2.jcc.DB2SimpleDataSource.getConnection(Unknown Source)
+	at com.ibm.db2.jcc.DB2SimpleDataSource.getConnection(Unknown Source)
+	at com.ibm.db2.jcc.DB2Driver.connect(Unknown Source)
+	at com.ibm.db2.jcc.DB2Driver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at com.abisgen.main.DB2_Interface.tryConnect(DB2_Interface.java:41)
+	at com.abisgen.main.StartClass.main(StartClass.java:18)
+2015-09-25 14:58:48 ERROR DB2_Interface:47 - The ERROR occurs during connecting to DB
+com.ibm.db2.jcc.am.SqlInvalidAuthorizationSpecException: [jcc][t4][2013][11249][4.19.26] Connection authorization failure occurred.  Reason: User ID or Password invalid. ERRORCODE=-4214, SQLSTATE=28000
+	at com.ibm.db2.jcc.am.kd.a(Unknown Source)
+	at com.ibm.db2.jcc.am.kd.a(Unknown Source)
+	at com.ibm.db2.jcc.am.kd.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.f(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.b(Unknown Source)
+	at com.ibm.db2.jcc.t4.z.r(Unknown Source)
+	at com.ibm.db2.jcc.t4.z.k(Unknown Source)
+	at com.ibm.db2.jcc.t4.z.c(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.k(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.b(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.b(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.a(Unknown Source)
+	at com.ibm.db2.jcc.t4.b.<init>(Unknown Source)
+	at com.ibm.db2.jcc.DB2SimpleDataSource.getConnection(Unknown Source)
+	at com.ibm.db2.jcc.DB2SimpleDataSource.getConnection(Unknown Source)
+	at com.ibm.db2.jcc.DB2Driver.connect(Unknown Source)
+	at com.ibm.db2.jcc.DB2Driver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at com.abisgen.main.DB2_Interface.tryConnect(DB2_Interface.java:41)
+	at com.abisgen.main.StartClass.main(StartClass.java:18)
+2015-09-25 15:05:01 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 15:05:01 INFO  StartClass:21 - Application has been started!
+2015-09-25 15:12:51 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 15:12:51 INFO  StartClass:26 - Application has been started!
+2015-09-25 15:13:39 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 15:13:39 INFO  StartClass:26 - Application has been started!
+2015-09-25 16:15:20 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 16:15:20 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-25 16:30:07 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 16:30:07 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-25 16:39:39 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 16:39:39 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-25 16:41:18 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 16:41:18 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-25 17:21:35 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-25 17:21:35 INFO  ABIS_DataGenerator:26 - Application has been started!
