@@ -23,7 +23,7 @@ public class ABIS_DataGenerator {
            return;
         }
         
-        log.info("Application has been started!");
+        log.info("Application has started!\n");
         mw.setVisible(true);
     }
     

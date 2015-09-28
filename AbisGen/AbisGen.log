@@ -70,3 +70,93 @@ com.ibm.db2.jcc.am.SqlInvalidAuthorizationSpecException: [jcc][t4][2013][11249][
 2015-09-25 16:41:18 INFO  ABIS_DataGenerator:26 - Application has been started!
 2015-09-25 17:21:35 INFO  DB2_Interface:43 - Application has been connected to database!
 2015-09-25 17:21:35 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 11:07:17 INFO  MainWindow:66 - Application started!!!
+2015-09-28 11:07:38 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 11:07:38 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 11:11:07 INFO  MainWindow:66 - Application started!!!
+2015-09-28 11:11:23 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 11:11:23 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 11:32:26 INFO  MainWindow:66 - Application started!!!
+2015-09-28 11:32:39 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 11:32:39 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 11:33:17 INFO  MainWindow:83 - Data 2014 1 2014 1 1000
+
+2015-09-28 11:33:17 INFO  MainWindow:84 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 11:33:17 INFO  MainWindow:93 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 11:33:19 INFO  MainWindow:96 - Data for 01/01/2014 has been generated!
+
+2015-09-28 16:23:43 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 16:23:43 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 16:23:51 INFO  MainWindow:84 - Data 2014 1 2014 1 1000
+
+2015-09-28 16:23:51 INFO  MainWindow:85 - Folder: 
+
+2015-09-28 16:23:51 INFO  MainWindow:94 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 16:23:54 INFO  MainWindow:97 - Data for 01/01/2014 has been generated!
+
+2015-09-28 16:29:11 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 16:29:11 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 16:29:43 INFO  MainWindow:84 - Data 2014 1 2014 1 1000
+
+2015-09-28 16:29:43 INFO  MainWindow:85 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 16:29:43 INFO  MainWindow:94 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 16:29:46 INFO  MainWindow:97 - Data for 01/01/2014 has been generated!
+
+2015-09-28 16:31:30 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 16:31:30 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 16:31:36 INFO  MainWindow:84 - Data 2014 1 2014 1 1000
+
+2015-09-28 16:31:36 INFO  MainWindow:85 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 16:31:36 INFO  MainWindow:94 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 16:31:39 INFO  MainWindow:97 - Data for 01/01/2014 has been generated!
+
+2015-09-28 16:34:37 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 16:34:37 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 17:09:41 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 17:09:41 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 17:10:01 INFO  MainWindow:82 - Data 2014 1 2014 1 1000
+
+2015-09-28 17:10:01 INFO  MainWindow:83 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 17:10:01 INFO  MainWindow:92 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 17:10:03 INFO  MainWindow:95 - Data for 01/01/2014 has been generated!
+
+2015-09-28 17:31:55 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 17:31:55 INFO  ABIS_DataGenerator:26 - Application has been started!
+2015-09-28 17:32:05 INFO  MainWindow:82 - Data 2014 1 2014 1 1000
+
+2015-09-28 17:32:05 INFO  MainWindow:83 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 17:32:05 INFO  MainWindow:92 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 17:32:07 INFO  MainWindow:95 - Data for 01/01/2014 has been generated!
+
+2015-09-28 17:34:02 INFO  DB2_Interface:43 - Application has been connected to database!
+2015-09-28 17:34:02 INFO  ABIS_DataGenerator:26 - Application has been started!
+
+2015-09-28 17:34:32 INFO  ABIS_DataGenerator:26 - Application has been started!
+
+2015-09-28 17:34:38 INFO  MainWindow:82 - Data 2014 1 2014 1 1000
+
+2015-09-28 17:34:38 INFO  MainWindow:83 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 17:34:38 INFO  MainWindow:92 - Generatig data for 01/01/2014 was started!
+
+2015-09-28 17:34:41 INFO  MainWindow:95 - Data for 01/01/2014 has been generated!
+
+2015-09-28 17:50:13 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-28 17:50:17 INFO  MainWindow:81 - Data 2014 1 2014 1 1000
+
+2015-09-28 17:50:17 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-28 17:50:17 INFO  MainWindow:96 - Data for 01/01/2014 has been generated!
+

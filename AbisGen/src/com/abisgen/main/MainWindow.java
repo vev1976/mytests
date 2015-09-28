@@ -19,10 +19,13 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.apache.log4j.Logger;
+
 
 public class MainWindow extends JFrame
 {
     private static final long serialVersionUID = 6506372392773398608L;
+    private Logger log = Logging.getLogger(MainWindow.class.getName());
     
     private int win_width = 800;
     private int win_hight = 600;
@@ -58,6 +61,7 @@ public class MainWindow extends JFrame
          this.setLocation((screen_dim.width-win_width)/2, (screen_dim.height-win_hight)/2);
          this.addWindowListener(winadapter);
          this.prepareGUI();
+         Logger.getRootLogger().addAppender(new TextAreaLog4jAppender(ta_log));
     }
     
     public void onClose()
@@ -74,9 +78,8 @@ public class MainWindow extends JFrame
     
     public void calculate()
     {
-        //clientNumber = (int) tfClientNum.getValue();
-        ta_log.append("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m + " " + clientNumber + "\n");
-        ta_log.append("Folder: "+ outfolder +"\n");
+        log.info("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m + " " + clientNumber + "\n");
+        log.info("Folder: "+ outfolder +"\n");
         Calendar abzugdatum = Calendar.getInstance();
 
         DB2_Interface db = DB2_Interface.getInstance();
@@ -85,10 +88,12 @@ public class MainWindow extends JFrame
         while ((from_y*100 + from_m)<=(to_y*100 + to_m))
         {
          abzugdatum.set(from_y, from_m - 1, 01);
-         ta_log.append(String.format("Generatig data for 01/%02d/%d was started!\n",from_m,from_y));
-         GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),100,db);
-         gn.generate();
-         ta_log.append(String.format("Data for 01/%02d/%d has been generated!\n",from_m,from_y));
+         GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),clientNumber,db);
+         //gn.generate();
+         Thread t = new Thread(gn,String.format("01/%02d/%d",from_m,from_y));
+         t.start();
+       
+         log.info(String.format("Data for 01/%02d/%d has been generated!\n",from_m,from_y));
 
          from_m = (from_m==12?1:from_m+1);
          from_y = (from_m==1?from_y+1:from_y);
@@ -159,10 +164,11 @@ public class MainWindow extends JFrame
                
                
                tfFolder.setPreferredSize(new Dimension(380,25));
+               outfolder = prop.getProperty("OutputFolder","");
                tfFolder.addTextListener(new TextListener() {
                         public void textValueChanged(TextEvent arg0) { outfolder = tfFolder.getText(); }
                });
-               tfFolder.setText(prop.getProperty("OutputFolder",""));
+               tfFolder.setText(outfolder);
                p_1.add(tfFolder);
                
                Button btnFolderChooser = new Button("...");
@@ -185,11 +191,12 @@ public class MainWindow extends JFrame
                p_2.add(l);
 
                tfClientNum.setPreferredSize(new Dimension(75,25));
-               tfClientNum.setModel(new SpinnerNumberModel(Integer.parseInt( prop.getProperty( "Number_of_clients", "0")), 10, 100000, 1));
+               clientNumber = Integer.parseInt(prop.getProperty( "Number_of_clients", "1000"));
+               tfClientNum.setModel(new SpinnerNumberModel( (Number) clientNumber, 10, 100000, 1));
                tfClientNum.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {clientNumber = (int) tfClientNum.getValue();}
                });
-               
+         
                p_2.add(tfClientNum);
                
          Panel p_buttons = new Panel();

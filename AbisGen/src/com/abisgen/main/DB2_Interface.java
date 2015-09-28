@@ -40,7 +40,6 @@ public class DB2_Interface {
         {
           con = DriverManager.getConnection(jdbcConn_string, UID, PWD);
           result = (con != null);
-          log.info("Application has been connected to database!");
         }
         catch (SQLException e)
         {
