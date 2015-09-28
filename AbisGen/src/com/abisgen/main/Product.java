@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-public class product {
+public class Product {
 	
 	private Date Abzugdatum;
 	private int Kontonummer;
@@ -38,9 +38,9 @@ public class product {
 	private String Werung;
 	private float Kurs_FW_1_EURO;
 	
-	private account acc;
+	private Account acc;
 	
-	public product(Date abzugdatum,Client cl, int prod_group, int prod_num)
+	public Product(Date abzugdatum,Client cl, int prod_group, int prod_num)
 	{
 		int AccNumber;
 		
@@ -51,9 +51,9 @@ public class product {
         
 		AccNumber = cl.getLast_Account_Number()+1;
 		if (prod_group==1)
-		   acc = new account(abzugdatum, this.Kundennummer*100+AccNumber,'A');
+		   acc = new Account(abzugdatum, this.Kundennummer*100+AccNumber,'A');
 		else 
-		   acc = new account(abzugdatum, this.Kundennummer*100+AccNumber,'P');
+		   acc = new Account(abzugdatum, this.Kundennummer*100+AccNumber,'P');
 
 		this.Kontonummer = this.Kundennummer*100 + AccNumber;
 		cl.setLast_Account_Number(AccNumber);		
@@ -61,7 +61,7 @@ public class product {
 		acc.generate_values();
 	}
 	
-	public account getAccount()
+	public Account getAccount()
 	{
 		return this.acc;
 	}

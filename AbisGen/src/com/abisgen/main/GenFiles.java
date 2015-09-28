@@ -61,10 +61,10 @@ public class GenFiles {
 			   Client cl = new Client(this.abzugdatum,i);
 			   cl.generateValues(db);
 			   
-			   product prod11 = new product(this.abzugdatum,cl,1,1);
-			   product prod12 = new product(this.abzugdatum,cl,1,2);
-			   product prod21 = new product(this.abzugdatum,cl,2,1);
-			   product prod22 = new product(this.abzugdatum,cl,2,2);
+			   Product prod11 = new Product(this.abzugdatum,cl,1,1);
+			   Product prod12 = new Product(this.abzugdatum,cl,1,2);
+			   Product prod21 = new Product(this.abzugdatum,cl,2,1);
+			   Product prod22 = new Product(this.abzugdatum,cl,2,2);
 			   
 			   prod11.generate_values();
 			   prod12.generate_values();

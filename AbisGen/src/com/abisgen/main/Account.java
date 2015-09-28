@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class account {
+public class Account {
 
 private	Date Abzugdatum;
 private Integer Kontonummer;
@@ -47,7 +47,7 @@ private float Valutasaldo;
 private float Zinssatz_nominell;
 private float Nominal_Saldo;
 
-public account(Date abzugdatum,int acc_id,char a_p)
+public Account(Date abzugdatum,int acc_id,char a_p)
 {
 	this.Abzugdatum = abzugdatum;
 	this.Kontonummer = acc_id;
