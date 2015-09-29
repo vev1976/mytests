@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
 
@@ -30,7 +31,9 @@ public class GenFiles
     public void generate()
     {
         Logger log = Logging.getLogger(GenFiles.class.getName());
-        log.info(String.format("Generatig data for 01/%02d/%d was started!\n",abzugdatum.));
+        GregorianCalendar abzug = new GregorianCalendar();
+        abzug.setTime(abzugdatum);
+        log.info(String.format("Generatig data for 01/%02d/%d was started!",abzug.get(Calendar.MONTH)+1,abzug.get(Calendar.YEAR)));
         
         PrintWriter abiskd;
         PrintWriter abiskt;
@@ -98,7 +101,8 @@ public class GenFiles
             abiskt.close();
             abisst.close();
         }
-        
+        log.info(String.format("Data for 01/%02d/%d has been generated!",abzug.get(Calendar.MONTH)+1,abzug.get(Calendar.YEAR)));
+
         
     }
 

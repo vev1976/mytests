@@ -27,7 +27,7 @@ public class TextAreaLog4jAppender extends AppenderSkeleton {
     @Override
     protected void append(LoggingEvent le) {
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(le.getTimeStamp());
-        ta.append( String.valueOf(date + le.getLevel().toString() + "  " + le.getRenderedMessage()) );
+        ta.append( String.valueOf(date + le.getLevel().toString() + "  " + le.getRenderedMessage()) + "\n" );
     }
 
 }

@@ -35,7 +35,9 @@ public class MainWindow extends JFrame
     private int from_y = 2014,from_m = 1, to_y = 2014, to_m = 1;
     private String outfolder = "";
     private int clientNumber = 0;
+    private RunThreads runthreads;
     
+    private Button btnCalc = new Button();
     private Choice ch_from_y = new Choice();
     private Choice ch_from_m = new Choice();
     private Choice ch_to_y = new Choice();
@@ -44,12 +46,64 @@ public class MainWindow extends JFrame
     private JSpinner tfClientNum = new JSpinner();
     
     
+    
     private class WinAdapter extends WindowAdapter
     {
         public void windowClosing(WindowEvent windowEvent){
             onClose();
          }
     }
+    
+    private class RunThreads implements Runnable {
+        public boolean stop_execition = false;
+        @Override
+        public void run() {
+            Calendar abzugdatum = Calendar.getInstance();
+            int y1 = from_y,m1 = from_m, y2 = to_y, m2 = to_m;
+            
+            DB2_Interface db = DB2_Interface.getInstance();
+            try
+            {
+                runthreads = this;
+                btnCalc.setLabel("Stop");
+                btnCalc.setActionCommand("Stop");
+                
+              outcycle:
+                while ((y1*100 + m1)<=(y2*100 + m2))
+                {
+                      int numofthreads = 2;
+                      Thread[] threads = new Thread[numofthreads];
+                      for (int i=0;i<threads.length;i++){
+                             abzugdatum.set(y1, m1 - 1, 01);
+                             GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),clientNumber,db);
+                             //gn.generate();
+                             threads[i] = new Thread(gn,String.format("01/%02d/%d",m1,y1));
+                             threads[i].start();
+                             m1 = (m1==12? 1   :m1+1);
+                             y1 = (m1==1? y1+1 : y1 );
+                             if ((y1*100 + m1)>(y2*100 + m2)) break;
+                             if (stop_execition) break outcycle;
+                       }
+                      for (int i=0; i<threads.length; i++)
+                             if (threads[i] != null)
+                               try {
+                                       if (stop_execition) break outcycle;
+                                       if (threads[i] != null) threads[i].join();
+                                   } catch (InterruptedException e) {
+                                       log.error(e.getMessage(),e);
+                                   }
+                 }
+            }
+            finally {
+                btnCalc.setLabel("Calculate");
+                btnCalc.setActionCommand("Calculate");
+                runthreads = null;
+                log.info("Calculation was finished!");
+             }
+        }
+    }
+
+    
     
     
     public MainWindow (String title) throws HeadlessException
@@ -78,27 +132,11 @@ public class MainWindow extends JFrame
     
     public void calculate()
     {
-        log.info("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m + " " + clientNumber + "\n");
-        log.info("Folder: "+ outfolder +"\n");
-        Calendar abzugdatum = Calendar.getInstance();
-
-        DB2_Interface db = DB2_Interface.getInstance();
-    
-        
-        while ((from_y*100 + from_m)<=(to_y*100 + to_m))
-        {
-         abzugdatum.set(from_y, from_m - 1, 01);
-         GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),clientNumber,db);
-         //gn.generate();
-         Thread t = new Thread(gn,String.format("01/%02d/%d",from_m,from_y));
-         t.start();
-       
-         log.info(String.format("Data for 01/%02d/%d has been generated!\n",from_m,from_y));
-
-         from_m = (from_m==12?1:from_m+1);
-         from_y = (from_m==1?from_y+1:from_y);
-        }
-        
+        log.info("Data "+ from_y + " " + from_m + " " + to_y + " " + to_m + " " + clientNumber);
+        log.info("Folder: "+ outfolder);
+        RunThreads rt = new RunThreads();
+        Thread t = new Thread(rt,"common thread");
+        t.start();
     }
     
     private void prepareGUI()
@@ -224,13 +262,22 @@ public class MainWindow extends JFrame
          p_buttons.add(verticalStrut);
          p_buttons.add(btnExit);
          
-         Button btnCalc = new Button();
+         
          btnCalc.setLabel("Calculate");
+         btnCalc.setActionCommand("Calculate");
+
          btnCalc.setMaximumSize(button_dim);
          btnCalc.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e)
              {
-                 calculate();
+                 if (e.getActionCommand() == "Calculate") {
+                    calculate();
+                 } else {
+                    if (runthreads != null) {
+                        runthreads.stop_execition = true;
+                        log.warn("Calculation was stopped by User. Please wait for stoping...");
+                    }
+                 }
              }
           });
          

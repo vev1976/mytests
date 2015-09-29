@@ -63,7 +63,7 @@ public class DB2_Interface {
         }
     }
     
-    public void execSQL(String sql) throws SQLException
+    public synchronized void execSQL(String sql) throws SQLException
     {
         checkConnection();
         try (Statement stm = con.createStatement()){
@@ -72,7 +72,7 @@ public class DB2_Interface {
         }
     }
     
-    public String[] selectOneRow(String sql) throws SQLException
+    public synchronized String[] selectOneRow(String sql) throws SQLException
     {
         String[] s = {};
         

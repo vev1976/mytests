@@ -160,3 +160,188 @@ com.ibm.db2.jcc.am.SqlInvalidAuthorizationSpecException: [jcc][t4][2013][11249][
 
 2015-09-28 17:50:17 INFO  MainWindow:96 - Data for 01/01/2014 has been generated!
 
+2015-09-29 10:03:10 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 10:03:45 INFO  MainWindow:81 - Data 2015 1 2015 4 1000
+
+2015-09-29 10:03:45 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+
+2015-09-29 10:03:45 INFO  GenFiles:36 - Generatig data for 01/00/2015 was started!
+2015-09-29 10:03:45 INFO  GenFiles:36 - Generatig data for 01/02/2015 was started!
+2015-09-29 10:03:45 INFO  GenFiles:36 - Generatig data for 01/03/2015 was started!
+2015-09-29 10:03:45 INFO  GenFiles:36 - Generatig data for 01/01/2015 was started!
+2015-09-29 10:04:34 INFO  GenFiles:104 - Data for 01/00/2015 has been generated!
+
+2015-09-29 10:04:37 INFO  GenFiles:104 - Data for 01/01/2015 has been generated!
+
+2015-09-29 10:04:46 INFO  GenFiles:104 - Data for 01/03/2015 has been generated!
+
+2015-09-29 10:04:48 INFO  GenFiles:104 - Data for 01/02/2015 has been generated!
+
+2015-09-29 10:10:40 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 10:11:00 INFO  MainWindow:81 - Data 2016 1 2016 5 1000
+2015-09-29 10:11:00 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 10:11:00 INFO  GenFiles:36 - Generatig data for 01/00/2016 was started!
+2015-09-29 10:11:00 INFO  GenFiles:36 - Generatig data for 01/01/2016 was started!
+2015-09-29 10:11:00 INFO  GenFiles:36 - Generatig data for 01/04/2016 was started!
+2015-09-29 10:11:00 INFO  GenFiles:36 - Generatig data for 01/03/2016 was started!
+2015-09-29 10:11:00 INFO  GenFiles:36 - Generatig data for 01/02/2016 was started!
+2015-09-29 10:12:03 INFO  GenFiles:104 - Data for 01/03/2016 has been generated!
+
+2015-09-29 10:12:03 INFO  GenFiles:104 - Data for 01/04/2016 has been generated!
+
+2015-09-29 10:12:10 INFO  GenFiles:104 - Data for 01/01/2016 has been generated!
+
+2015-09-29 10:12:16 INFO  GenFiles:104 - Data for 01/02/2016 has been generated!
+
+2015-09-29 10:12:21 INFO  GenFiles:104 - Data for 01/00/2016 has been generated!
+
+2015-09-29 10:15:31 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 10:16:04 INFO  MainWindow:81 - Data 2016 1 2016 5 1000
+2015-09-29 10:16:04 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 10:16:04 INFO  GenFiles:36 - Generatig data for 01/00/2016 was started!
+2015-09-29 10:16:21 INFO  GenFiles:104 - Data for 01/00/2016 has been generated!
+
+2015-09-29 10:16:21 INFO  GenFiles:36 - Generatig data for 01/01/2016 was started!
+2015-09-29 10:16:38 INFO  GenFiles:104 - Data for 01/01/2016 has been generated!
+
+2015-09-29 10:16:38 INFO  GenFiles:36 - Generatig data for 01/02/2016 was started!
+2015-09-29 10:16:54 INFO  GenFiles:104 - Data for 01/02/2016 has been generated!
+
+2015-09-29 10:16:54 INFO  GenFiles:36 - Generatig data for 01/03/2016 was started!
+2015-09-29 10:17:09 INFO  GenFiles:104 - Data for 01/03/2016 has been generated!
+
+2015-09-29 10:17:09 INFO  GenFiles:36 - Generatig data for 01/04/2016 was started!
+2015-09-29 10:17:25 INFO  GenFiles:104 - Data for 01/04/2016 has been generated!
+
+2015-09-29 10:36:01 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 10:36:13 INFO  MainWindow:81 - Data 2015 1 2014 4 1000
+2015-09-29 10:36:13 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 10:36:36 INFO  MainWindow:81 - Data 2015 1 2015 4 1000
+2015-09-29 10:36:36 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 10:36:36 INFO  GenFiles:36 - Generatig data for 01/01/2015 was started!
+2015-09-29 10:36:56 INFO  GenFiles:104 - Data for 01/01/2015 has been generated!
+2015-09-29 10:36:56 INFO  GenFiles:36 - Generatig data for 01/02/2015 was started!
+2015-09-29 10:37:12 INFO  GenFiles:104 - Data for 01/02/2015 has been generated!
+2015-09-29 10:37:12 INFO  GenFiles:36 - Generatig data for 01/03/2015 was started!
+2015-09-29 10:37:28 INFO  GenFiles:104 - Data for 01/03/2015 has been generated!
+2015-09-29 10:37:28 INFO  GenFiles:36 - Generatig data for 01/04/2015 was started!
+2015-09-29 10:37:44 INFO  GenFiles:104 - Data for 01/04/2015 has been generated!
+2015-09-29 10:46:59 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 10:49:04 INFO  MainWindow:81 - Data 2014 1 2014 5 1000
+2015-09-29 10:49:04 INFO  MainWindow:82 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 10:49:04 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 10:49:04 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 10:49:35 INFO  GenFiles:104 - Data for 01/02/2014 has been generated!
+2015-09-29 10:49:36 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 10:49:36 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 10:49:36 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 10:50:06 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
+2015-09-29 10:50:07 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
+2015-09-29 10:50:07 INFO  GenFiles:36 - Generatig data for 01/05/2014 was started!
+2015-09-29 10:50:22 INFO  GenFiles:104 - Data for 01/05/2014 has been generated!
+2015-09-29 14:48:19 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 14:48:48 INFO  MainWindow:82 - Data 2014 1 2014 7 1000
+2015-09-29 14:48:48 INFO  MainWindow:83 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/05/2014 was started!
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/06/2014 was started!
+2015-09-29 14:48:48 INFO  GenFiles:36 - Generatig data for 01/07/2014 was started!
+2015-09-29 14:53:25 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 14:53:33 INFO  MainWindow:82 - Data 2014 1 2014 7 1000
+2015-09-29 14:53:33 INFO  MainWindow:83 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/05/2014 was started!
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/06/2014 was started!
+2015-09-29 14:53:33 INFO  GenFiles:36 - Generatig data for 01/07/2014 was started!
+2015-09-29 14:55:02 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 14:55:04 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
+2015-09-29 14:55:06 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
+2015-09-29 14:55:06 INFO  GenFiles:104 - Data for 01/06/2014 has been generated!
+2015-09-29 14:55:06 INFO  GenFiles:104 - Data for 01/05/2014 has been generated!
+2015-09-29 14:55:20 INFO  GenFiles:104 - Data for 01/07/2014 has been generated!
+2015-09-29 14:55:20 INFO  GenFiles:104 - Data for 01/02/2014 has been generated!
+2015-09-29 15:28:13 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 15:28:36 INFO  MainWindow:123 - Data 2014 1 2014 5 1000
+2015-09-29 15:28:36 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:28:36 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 15:28:36 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 15:29:08 INFO  GenFiles:104 - Data for 01/02/2014 has been generated!
+2015-09-29 15:29:08 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 15:29:08 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 15:29:08 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 15:29:39 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
+2015-09-29 15:29:39 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
+2015-09-29 15:29:39 INFO  GenFiles:36 - Generatig data for 01/05/2014 was started!
+2015-09-29 15:29:55 INFO  GenFiles:104 - Data for 01/05/2014 has been generated!
+2015-09-29 15:30:44 INFO  MainWindow:123 - Data 2014 6 2014 5 1000
+2015-09-29 15:30:44 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:30:53 INFO  MainWindow:123 - Data 2014 6 2014 5 1000
+2015-09-29 15:30:53 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:31:24 INFO  MainWindow:123 - Data 2014 6 2014 5 1000
+2015-09-29 15:31:24 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:31:25 INFO  MainWindow:123 - Data 2014 6 2014 5 1000
+2015-09-29 15:31:25 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:31:26 INFO  MainWindow:123 - Data 2014 6 2014 5 1000
+2015-09-29 15:31:26 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:33:09 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 15:33:26 INFO  MainWindow:123 - Data 2014 1 2014 5 1000
+2015-09-29 15:33:26 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:33:50 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 15:33:50 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 15:34:22 INFO  GenFiles:104 - Data for 01/02/2014 has been generated!
+2015-09-29 15:34:22 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 15:34:22 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 15:34:22 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 15:34:53 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
+2015-09-29 15:34:53 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
+2015-09-29 15:34:53 INFO  GenFiles:36 - Generatig data for 01/05/2014 was started!
+2015-09-29 15:35:09 INFO  GenFiles:104 - Data for 01/05/2014 has been generated!
+2015-09-29 15:35:16 INFO  MainWindow:123 - Data 2014 6 2014 5 1000
+2015-09-29 15:35:16 INFO  MainWindow:124 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:42:33 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 15:42:42 INFO  MainWindow:124 - Data 2014 1 2014 7 1000
+2015-09-29 15:42:42 INFO  MainWindow:125 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:42:49 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 15:43:08 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 15:44:46 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 15:44:58 INFO  MainWindow:124 - Data 2014 1 2014 5 1000
+2015-09-29 15:44:58 INFO  MainWindow:125 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 15:44:58 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 15:44:58 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 15:45:32 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 15:45:33 INFO  GenFiles:104 - Data for 01/02/2014 has been generated!
+2015-09-29 15:45:33 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 15:45:33 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 15:46:04 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
+2015-09-29 15:46:04 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
+2015-09-29 15:46:04 INFO  GenFiles:36 - Generatig data for 01/05/2014 was started!
+2015-09-29 15:46:20 INFO  GenFiles:104 - Data for 01/05/2014 has been generated!
+2015-09-29 16:20:14 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-29 16:20:27 INFO  MainWindow:134 - Data 2014 1 2014 7 1000
+2015-09-29 16:20:27 INFO  MainWindow:135 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-29 16:20:27 INFO  GenFiles:36 - Generatig data for 01/01/2014 was started!
+2015-09-29 16:20:27 INFO  GenFiles:36 - Generatig data for 01/02/2014 was started!
+2015-09-29 16:20:59 INFO  GenFiles:104 - Data for 01/01/2014 has been generated!
+2015-09-29 16:20:59 INFO  GenFiles:104 - Data for 01/02/2014 has been generated!
+2015-09-29 16:20:59 INFO  GenFiles:36 - Generatig data for 01/03/2014 was started!
+2015-09-29 16:20:59 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
+2015-09-29 16:21:30 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
+2015-09-29 16:21:30 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
