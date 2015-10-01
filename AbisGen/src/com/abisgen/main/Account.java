@@ -155,7 +155,7 @@ public void generate_values()
     BVR_Kto_Nr_Ztr = BVR_Kto_Nr_Ztr_vals[rnd.nextInt(BVR_Kto_Nr_Ztr_vals.length)];
     
     DS_Eff_Saldo_Jahr = (float) ((float) ActPass*(rnd.nextInt(100000000)/100.0));
-    DS_Eff_Saldo_Mon = (float) ((float) ActPass*(rnd.nextInt(100000000)/100.0));;
+    DS_Eff_Saldo_Mon = (float) ((float) ActPass*(rnd.nextInt(100000000)/100.0));
     DS_Nom_Saldo_Jahr = (float) (DS_Eff_Saldo_Jahr*(1.05));
     DS_Nom_Saldo_Mon = DS_Eff_Saldo_Mon;
     DS_Val_Saldo_Jahr = DS_Nom_Saldo_Jahr;
