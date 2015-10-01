@@ -345,3 +345,41 @@ com.ibm.db2.jcc.am.SqlInvalidAuthorizationSpecException: [jcc][t4][2013][11249][
 2015-09-29 16:20:59 INFO  GenFiles:36 - Generatig data for 01/04/2014 was started!
 2015-09-29 16:21:30 INFO  GenFiles:104 - Data for 01/04/2014 has been generated!
 2015-09-29 16:21:30 INFO  GenFiles:104 - Data for 01/03/2014 has been generated!
+2015-09-30 14:41:40 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-30 14:41:46 INFO  MainWindow:135 - Data 2014 1 2014 2 1000
+2015-09-30 14:41:46 INFO  MainWindow:136 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-30 14:41:46 INFO  GenFiles:33 - Abzugdatum;Kontonummer;Skontronummer;Hauptbuchkontonr.;Warung Hauptbuch;Depot-Kontonummer;DepotSkontronummer;WP Kennr.Depot;Derivat BBS-Konto;Datum Kt-Zeitr.bis;Schl. Bilanz-Seite;BBS-Sts Konto;BVR-Kto.-Nr.Ztr;DS.Eff.Saldo Jahr;DS.Eff.Saldo Mon.;DS.Nom.Saldo Jahr;DS.Nom.Saldo Mon.;DS.Val.Saldo Jahr;DS.Val.Saldo Mon.;DS.Val.Sld 30 Tg;DS-Zins Val. Jhr;DS-Zins Val. Mon;Eff. Saldo;Eff.Zins DS Jahr;Eff.Zins DS Monat;Eff-Zinsen Jahr;Eff-Zinsen Mon.;Eff-Zinsen STG;Effektivzinss.Ztr;Fremdmittelbtr.Ztr;K.-marge DS Jahr;K.-marge DS Monat;Kz Festzins Ztr.;Kz Kontokorrektur;Val-Zinsen Jahr;Val-Zinsen Mon.;Val-Zinsen STG;Valutasaldo;Zinssatz nominell;Nominal-Saldo
+2015-09-30 14:41:46 INFO  GenFiles:34 - Abzugdatum;Kundennummer;Anredeschlessel;AP Kundenbetreuer;AP Sachbearbeiter;Bankint. Klassifiz;Berufszw.Arbeitgb.;Branche/Beruf;Datum Kundenanlage;Devisenstatusschl.;Familienstand;Geburtsdatum;Gemeinschaftskunde;Geschlecht;Grendung am;Geterstand;Konditions-Gruppe;Kundenart;Kundenbonitet;Kundenfiliale;Kundengruppe;Kundensegment;Kundentyp;LanderschlǬssel;Nachname;Name 1.Teil;Name 2.Teil;Ort;PLZ;Rechtsformschless.;Risikogruppenschl.;Sortiername;Staatsangeherigk.;Status;Steuerinlander;Stlg. Erwerbsleben;Vorname;Organ/Mitarb.-Sl.;Kunden-Status;Employee_key;Kz Groekredit;Kz Millionenkredit
+2015-09-30 14:41:46 INFO  GenFiles:35 - Abzugdatum;Kontonummer;Skontronummer;Aderungsdatum;BVR-Kto.-Nr.;Dat. lzt. Buchung;Dat. lzt. Umsatz;Datum der Anlage;Datum Auflaung;EURO Konto;Filiale;Frist vereinb. LFZ;Fristigkeit Restl.;Geschatsart;INA Kr.Suival.sum;Jur. Laufzeitende.;Kapitalsaldo;Kontostatus;Kundennummer;Laufzeit Jahre;Laufzeit Tage;Laufzeitende echt;negativer Kap-Sald;positiver Kap-Sald;Produktbereich;Produktnummer;Sachbearbeiter;Warung des Kontos;Warung;Kurs FW fo 1 EURO
+2015-09-30 14:41:46 INFO  GenFiles:33 - Abzugdatum;Kontonummer;Skontronummer;Hauptbuchkontonr.;Warung Hauptbuch;Depot-Kontonummer;DepotSkontronummer;WP Kennr.Depot;Derivat BBS-Konto;Datum Kt-Zeitr.bis;Schl. Bilanz-Seite;BBS-Sts Konto;BVR-Kto.-Nr.Ztr;DS.Eff.Saldo Jahr;DS.Eff.Saldo Mon.;DS.Nom.Saldo Jahr;DS.Nom.Saldo Mon.;DS.Val.Saldo Jahr;DS.Val.Saldo Mon.;DS.Val.Sld 30 Tg;DS-Zins Val. Jhr;DS-Zins Val. Mon;Eff. Saldo;Eff.Zins DS Jahr;Eff.Zins DS Monat;Eff-Zinsen Jahr;Eff-Zinsen Mon.;Eff-Zinsen STG;Effektivzinss.Ztr;Fremdmittelbtr.Ztr;K.-marge DS Jahr;K.-marge DS Monat;Kz Festzins Ztr.;Kz Kontokorrektur;Val-Zinsen Jahr;Val-Zinsen Mon.;Val-Zinsen STG;Valutasaldo;Zinssatz nominell;Nominal-Saldo
+2015-09-30 14:41:46 INFO  GenFiles:34 - Abzugdatum;Kundennummer;Anredeschlessel;AP Kundenbetreuer;AP Sachbearbeiter;Bankint. Klassifiz;Berufszw.Arbeitgb.;Branche/Beruf;Datum Kundenanlage;Devisenstatusschl.;Familienstand;Geburtsdatum;Gemeinschaftskunde;Geschlecht;Grendung am;Geterstand;Konditions-Gruppe;Kundenart;Kundenbonitet;Kundenfiliale;Kundengruppe;Kundensegment;Kundentyp;LanderschlǬssel;Nachname;Name 1.Teil;Name 2.Teil;Ort;PLZ;Rechtsformschless.;Risikogruppenschl.;Sortiername;Staatsangeherigk.;Status;Steuerinlander;Stlg. Erwerbsleben;Vorname;Organ/Mitarb.-Sl.;Kunden-Status;Employee_key;Kz Groekredit;Kz Millionenkredit
+2015-09-30 14:41:46 INFO  GenFiles:53 - Generatig data for 01/01/2014 was started!
+2015-09-30 14:41:46 INFO  GenFiles:35 - Abzugdatum;Kontonummer;Skontronummer;Aderungsdatum;BVR-Kto.-Nr.;Dat. lzt. Buchung;Dat. lzt. Umsatz;Datum der Anlage;Datum Auflaung;EURO Konto;Filiale;Frist vereinb. LFZ;Fristigkeit Restl.;Geschatsart;INA Kr.Suival.sum;Jur. Laufzeitende.;Kapitalsaldo;Kontostatus;Kundennummer;Laufzeit Jahre;Laufzeit Tage;Laufzeitende echt;negativer Kap-Sald;positiver Kap-Sald;Produktbereich;Produktnummer;Sachbearbeiter;Warung des Kontos;Warung;Kurs FW fo 1 EURO
+2015-09-30 14:41:46 INFO  GenFiles:53 - Generatig data for 01/02/2014 was started!
+2015-09-30 14:42:18 INFO  GenFiles:121 - Data for 01/02/2014 has been generated!
+2015-09-30 14:42:18 INFO  GenFiles:121 - Data for 01/01/2014 has been generated!
+2015-09-30 14:42:18 INFO  MainWindow:101 - Calculation was finished!
+2015-09-30 15:39:43 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-30 15:39:53 INFO  MainWindow:135 - Data 2014 1 2014 2 1000
+2015-09-30 15:39:53 INFO  MainWindow:136 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-30 15:39:53 INFO  GenFiles:52 - Generatig data for 01/01/2014 was started!
+2015-09-30 15:39:53 INFO  GenFiles:52 - Generatig data for 01/02/2014 was started!
+2015-09-30 15:40:25 INFO  GenFiles:120 - Data for 01/02/2014 has been generated!
+2015-09-30 15:40:25 INFO  GenFiles:120 - Data for 01/01/2014 has been generated!
+2015-09-30 15:40:25 INFO  MainWindow:101 - Calculation was finished!
+2015-09-30 15:49:05 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-30 15:49:12 INFO  MainWindow:135 - Data 2014 1 2014 1 1000
+2015-09-30 15:49:12 INFO  MainWindow:136 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-30 15:49:12 INFO  GenFiles:52 - Generatig data for 01/01/2014 was started!
+2015-09-30 15:49:33 INFO  GenFiles:120 - Data for 01/01/2014 has been generated!
+2015-09-30 15:49:33 INFO  MainWindow:101 - Calculation was finished!
+2015-09-30 16:05:45 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-09-30 16:06:02 INFO  MainWindow:135 - Data 2014 2 2014 2 1000
+2015-09-30 16:06:02 INFO  MainWindow:136 - Folder: /Users/velichko/Documents/tmp/1/
+2015-09-30 16:06:02 INFO  GenFiles:52 - Generatig data for 01/02/2014 was started!
+2015-09-30 16:06:25 INFO  GenFiles:120 - Data for 01/02/2014 has been generated!
+2015-09-30 16:06:25 INFO  MainWindow:101 - Calculation was finished!

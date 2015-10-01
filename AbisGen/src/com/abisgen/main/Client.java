@@ -1,5 +1,6 @@
 package com.abisgen.main;
 
+import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,48 +15,132 @@ import org.apache.log4j.Logger;
 
 public class Client {
 
+    @FieldCaption("Abzugdatum")
     private Date Abzugdatum;
+ 
+    @FieldCaption("Kundennummer")
     private Integer Kundennummer;
+    
+    @FieldCaption("Anredeschlessel")
     private Integer Anredeschlessel;
+    
+    @FieldCaption("AP Kundenbetreuer")
     private Integer AP_Kundenbetreuer;
+    
+    @FieldCaption("AP Sachbearbeiter")
     private Integer AP_Sachbearbeiter;
+    
+    @FieldCaption("Bankint. Klassifiz")
     private Integer Bankint_Klassifiz;
+    
+    @FieldCaption("Berufszw.Arbeitgb.")
     private Integer Berufszw_Arbeitgb;
+    
+    @FieldCaption("Branche/Beruf")
     private Integer Branche_Beruf;
+    
+    @FieldCaption("Datum Kundenanlage")
     private Date Datum_Kundenanlage;
+    
+    @FieldCaption("Devisenstatusschl.")
     private Integer Devisenstatusschl;
+    
+    @FieldCaption("Familienstand")
     private Integer Familienstand;
+    
+    @FieldCaption("Geburtsdatum")
     private Date Geburtsdatum;
+    
+    @FieldCaption("Gemeinschaftskunde")
     private char Gemeinschaftskunde;
+    
+    @FieldCaption("Geschlecht")
     private Integer Geschlecht;
+    
+    @FieldCaption("Grendung am")
     private Date Grendung_am;
+    
+    @FieldCaption("Geterstand")
     private Integer Geterstand;
+    
+    @FieldCaption("Konditions-Gruppe")
     private Integer Konditions_Gruppe;
+    
+    @FieldCaption("Kundenart")
     private char Kundenart;
+    
+    @FieldCaption("Kundenbonitet")
     private Integer Kundenbonitat;
+    
+    @FieldCaption("Kundenfiliale")
     private Integer Kundenfiliale;
+    
+    @FieldCaption("Kundengruppe")
     private Integer Kundengruppe;
+    
+    @FieldCaption("Kundensegment")
     private Integer Kundensegment;
+    
+    @FieldCaption("Kundentyp")
     private char Kundentyp;
+    
+    @FieldCaption("LanderschlǬssel")
     private Integer Landerschlessel;
+    
+    @FieldCaption("Nachname")
     private String Nachname;
+    
+    @FieldCaption("Name 1.Teil")
     private String Name1_Teil;
+    
+    @FieldCaption("Name 2.Teil")
     private String Name2_Teil;
+    
+    @FieldCaption("Ort")
     private String Ort;
+    
+    @FieldCaption("PLZ")
     private String PLZ;
+    
+    @FieldCaption("Rechtsformschless.")
     private Integer Rechtsformschless;
+    
+    @FieldCaption("Risikogruppenschl.")
     private Integer Risikogruppenschl;
+    
+    @FieldCaption("Sortiername")
     private String Sortiername;
+    
+    @FieldCaption("Staatsangeherigk.")
     private Integer StaatsangehUrigk;
+    
+    @FieldCaption("Status")
     private Integer Status;
+    
+    @FieldCaption("Steuerinlander")
     private char Steuerinlander;
+    
+    @FieldCaption("Stlg. Erwerbsleben")
     private Integer Stlg_Erwerbsleben;
+    
+    @FieldCaption("Vorname")
     private String Vorname;
+    
+    @FieldCaption("Organ/Mitarb.-Sl.")
     private Integer Organ_Mitarb_Sl;
+    
+    @FieldCaption("Kunden-Status")
     private Integer Kunden_Status;
+    
+    @FieldCaption("Employee_key")
     private int Employee_key;
+    
+    @FieldCaption("Kz Groekredit")
     private char Kz_Groekredit;
+    
+    @FieldCaption("Kz Millionenkredit")
     private char Kz_Millionenkredit;
+  
     
     private int Last_Account_Number;
     private Logger log = Logging.getLogger(getClass().getName());
@@ -204,9 +289,30 @@ public class Client {
     public String toString()
     {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        String str;
+        String str = "";
+        @SuppressWarnings("unchecked")
+        Class<Client> c = (Class<Client>) this.getClass();
         
-        str= formatter.format(Abzugdatum) + ';' +
+        for (Field f : c.getDeclaredFields()) {
+            if (f.isAnnotationPresent(FieldCaption.class))
+            {
+                if (f.getType().getName() == "java.util.Date")
+                {
+                    try {
+                        str = str + (str==""?"":";") + formatter.format((Date) f.get(this));
+                    } catch (IllegalArgumentException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        str = str + (str==""?"":";") + f.get(this);
+                    } catch (IllegalArgumentException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        /*str= formatter.format(Abzugdatum) + ';' +
              Kundennummer + ';' +
              Anredeschlessel + ";" +
              AP_Kundenbetreuer + ";" +
@@ -248,7 +354,7 @@ public class Client {
              Kunden_Status + ";" +
              Kz_Groekredit + ";" +
              Kz_Millionenkredit + ";";
-                
+          */
         return str;
         
     }

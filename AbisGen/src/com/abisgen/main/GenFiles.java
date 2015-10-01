@@ -2,6 +2,7 @@ package com.abisgen.main;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,21 +17,36 @@ public class GenFiles
     private Date abzugdatum;
     private int Count;
     private DB2_Interface db;
-    private String KD_Caption = "Abzugdatum;Kundennummer;Anredeschlessel;AP Kundenbetreuer;AP Sachbearbeiter;Bankint. Klassifiz;Berufszw.Arbeitgb.;Branche/Beruf;Datum Kundenanlage;Devisenstatusschl.;Familienstand;Geburtsdatum;Gemeinschaftskunde;Geschlecht;Grendung am;Geterstand;Konditions-Gruppe;Kundenart;Kundenbonitet;Kundenfiliale;Kundengruppe;Kundensegment;Kundentyp;LanderschlǬssel;Nachname;Name 1.Teil;Name 2.Teil;Ort;PLZ;Rechtsformschless.;Risikogruppenschl.;Sortiername;Staatsangeherigk.;Status;Steuerinlander;Stlg. Erwerbsleben;Vorname;Organ/Mitarb.-Sl.;Employee_key;Kunden-Status;Kz Groekredit;Kz Millionenkredit";
-    private String KT_Caption = "Abzugdatum;Kontonummer;Skontronummer;Aderungsdatum;BVR-Kto.-Nr.;Dat. lzt. Buchung;Dat. lzt. Umsatz;Datum der Anlage;Datum Auflaung;EURO Konto;Filiale;Frist vereinb. LFZ;Fristigkeit Restl.;Geschatsart;INA Kr.Suival.sum;Jur. Laufzeitende.;Kapitalsaldo;Kontostatus;Kundennummer;Laufzeit Jahre;Laufzeit Tage;Laufzeitende echt;negativer Kap-Sald;positiver Kap-Sald;Produktbereich;Produktnummer;Sachbearbeiter;Warung des Kontos;Warung;Kurs FW fo 1 EURO";
-    private String ST_Caption = "Abzugdatum;Kontonummer;Skontronummer;Hauptbuchkontonr.;Warung Hauptbuch;Depot-Kontonummer;DepotSkontronummer;WP Kennr.Depot;Derivat BBS-Konto;Datum Kt-Zeitr.bis;Schl. Bilanz-Seite;BBS-Sts Konto;BVR-Kto.-Nr.Ztr;DS.Eff.Saldo Jahr;DS.Eff.Saldo Mon.;DS.Nom.Saldo Jahr;DS.Nom.Saldo Mon.;DS.Val.Saldo Jahr;DS.Val.Saldo Mon.;DS.Val.Sld 30 Tg;DS-Zins Val. Jhr;DS-Zins Val. Mon;Eff. Saldo;Eff.Zins DS Jahr;Eff.Zins DS Monat;Eff-Zinsen Jahr;Eff-Zinsen Mon.;Eff-Zinsen STG;Effektivzinss.Ztr;Fremdmittelbtr.Ztr;K.-marge DS Jahr;K.-marge DS Monat;Kz Festzins Ztr.;Kz Kontokorrektur;Val-Zinsen Jahr;Val-Zinsen Mon.;Val-Zinsen STG;Valutasaldo;Zinssatz nominell;Nominal-Saldo";
+    private String KD_Caption;
+    private String KT_Caption;
+    private String ST_Caption;
 
+    private Logger log = Logging.getLogger(GenFiles.class.getName());
+    
     public GenFiles(String filespath, Date abzugdatum,int count,DB2_Interface db)
     {
         this.filespath = filespath;
         this.abzugdatum = abzugdatum;
         this.Count = count;
         this.db = db;
+        ST_Caption = GetCaptions(Account.class);
+        KD_Caption = GetCaptions(Client.class);
+        KT_Caption = GetCaptions(Product.class);
     }
 
+    private String GetCaptions(@SuppressWarnings("rawtypes") Class c){
+        String s = "";
+        if (c == null) return s;
+        for (Field m : c.getDeclaredFields()){
+            if (m.isAnnotationPresent(FieldCaption.class))
+                s = s +(s==""?"":";") + m.getAnnotation(FieldCaption.class).value();
+        }
+        return s;
+    }
+    
     public void generate()
     {
-        Logger log = Logging.getLogger(GenFiles.class.getName());
+        
         GregorianCalendar abzug = new GregorianCalendar();
         abzug.setTime(abzugdatum);
         log.info(String.format("Generatig data for 01/%02d/%d was started!",abzug.get(Calendar.MONTH)+1,abzug.get(Calendar.YEAR)));
