@@ -9,7 +9,7 @@ public class ABIS_DataGenerator {
         
         MainWindow mw = new MainWindow("Abis files generating");
         WinLogin win_login = new WinLogin(mw);
-        
+        // test comment
         if (win_login.modalresult != 1)
         {
            mw.dispose();
