@@ -531,3 +531,28 @@ com.ibm.db2.jcc.am.SqlSyntaxErrorException: [jcc][t4][10108][11232][4.19.26] Use
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+2015-11-05 10:31:00 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-11-05 10:41:55 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-11-05 10:55:29 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-11-05 10:57:17 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-11-05 10:59:55 INFO  ABIS_DataGenerator:26 - Application has started!
+
+2015-11-05 11:00:18 INFO  MainWindow:137 - Data 2014 1 2014 6 1000
+2015-11-05 11:00:18 INFO  MainWindow:138 - Folder: /Users/velichko/Documents/tmp/1/
+2015-11-05 11:00:18 INFO  GenFiles:52 - Generatig data for 01/01/2014 was started!
+2015-11-05 11:00:18 INFO  GenFiles:52 - Generatig data for 01/02/2014 was started!
+2015-11-05 11:00:18 INFO  GenFiles:52 - Generatig data for 01/03/2014 was started!
+2015-11-05 11:00:53 INFO  GenFiles:120 - Data for 01/03/2014 has been generated!
+2015-11-05 11:01:05 INFO  GenFiles:120 - Data for 01/02/2014 has been generated!
+2015-11-05 11:01:06 INFO  GenFiles:120 - Data for 01/01/2014 has been generated!
+2015-11-05 11:01:06 INFO  GenFiles:52 - Generatig data for 01/04/2014 was started!
+2015-11-05 11:01:06 INFO  GenFiles:52 - Generatig data for 01/05/2014 was started!
+2015-11-05 11:01:06 INFO  GenFiles:52 - Generatig data for 01/06/2014 was started!
+2015-11-05 11:01:36 INFO  GenFiles:120 - Data for 01/06/2014 has been generated!
+2015-11-05 11:01:50 INFO  GenFiles:120 - Data for 01/04/2014 has been generated!
+2015-11-05 11:01:51 INFO  GenFiles:120 - Data for 01/05/2014 has been generated!
+2015-11-05 11:01:51 INFO  MainWindow:103 - Calculation was finished!

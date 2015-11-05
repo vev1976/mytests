@@ -35,6 +35,7 @@ public class MainWindow extends JFrame
     private int from_y = 2014,from_m = 1, to_y = 2014, to_m = 1;
     private String outfolder = "";
     private int clientNumber = 0;
+    private int threadsnum = 1;
     private RunThreads runthreads;
     
     private Button btnCalc = new Button();
@@ -43,7 +44,8 @@ public class MainWindow extends JFrame
     private Choice ch_to_y = new Choice();
     private Choice ch_to_m = new Choice();
     private TextField tfFolder = new TextField();
-    private JSpinner tfClientNum = new JSpinner();
+    private JSpinner spnClientNum = new JSpinner();
+    private JSpinner spnTreadsNum = new JSpinner();
     
     
     
@@ -71,8 +73,8 @@ public class MainWindow extends JFrame
               outcycle:
                 while ((y1*100 + m1)<=(y2*100 + m2))
                 {
-                      int numofthreads = 2;
-                      Thread[] threads = new Thread[numofthreads];
+                      //int numofthreads = 2;
+                      Thread[] threads = new Thread[threadsnum];
                       for (int i=0;i<threads.length;i++){
                              abzugdatum.set(y1, m1 - 1, 01);
                              GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),clientNumber,db);
@@ -141,157 +143,173 @@ public class MainWindow extends JFrame
     
     private void prepareGUI()
     {
-         Property prop = Property.getInstance();
-         
-         getContentPane().setLayout(new BorderLayout());
-         
-         Panel p_top = new Panel(new BorderLayout());
-         getContentPane().add(p_top, BorderLayout.PAGE_START);
-         
-         Panel p_input = new Panel(new GridLayout(3,1));
-         p_top.add(p_input, BorderLayout.CENTER);
-
-         p_input.setMinimumSize(new Dimension(640,100));
-         p_input.setPreferredSize(new Dimension(640,100));
-         p_input.setMaximumSize(new Dimension(640,100));
-         
-               Panel p = new Panel(new FlowLayout(FlowLayout.LEADING));
-               p_input.add(p);
-               Label l = new Label("Period from   ");
-               l.setAlignment(Label.LEFT);
-               p.add(l);
-           
-               for (Integer i=2014;i<2019;i++) {
-                   ch_from_y.addItem(i.toString());
-                   ch_to_y.addItem(i.toString());
-               }
-               
-               for (Integer i=1;i<=12;i++) {
-                   ch_from_m.addItem(i.toString());
-                   ch_to_m.addItem(i.toString());
-               }
-               
-               ch_from_y.addItemListener(new ItemListener(){
-                      public void itemStateChanged(ItemEvent arg0) { from_y = Integer.valueOf(ch_from_y.getSelectedItem()); }
-               });
-               ch_from_m.addItemListener(new ItemListener(){
-                      public void itemStateChanged(ItemEvent arg0) { from_m = Integer.valueOf(ch_from_m.getSelectedItem()); }
-               });
-               ch_to_y.addItemListener(new ItemListener(){
-                      public void itemStateChanged(ItemEvent arg0) { to_y = Integer.valueOf(ch_to_y.getSelectedItem()); }
-               });
-               ch_to_m.addItemListener(new ItemListener(){
-                      public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
-               });
-               ch_from_y.select(0);
-               ch_from_m.select(0);
-               ch_to_y.select(0);
-               ch_to_m.select(0);
-               
-               p.add(ch_from_y);
-               p.add(ch_from_m);
-               p.add(new Label(" to "));
-               p.add(ch_to_y);
-               p.add(ch_to_m);
-               
-               Panel p_1 = new Panel(new FlowLayout(FlowLayout.LEADING));
-               p_input.add(p_1);
-               l = new Label("Output folder ");
-               l.setAlignment(Label.LEFT);
-               p_1.add(l);
-               
-               
-               tfFolder.setPreferredSize(new Dimension(380,25));
-               outfolder = prop.getProperty("OutputFolder","");
-               tfFolder.addTextListener(new TextListener() {
-                        public void textValueChanged(TextEvent arg0) { outfolder = tfFolder.getText(); }
-               });
-               tfFolder.setText(outfolder);
-               p_1.add(tfFolder);
-               
-               Button btnFolderChooser = new Button("...");
-               btnFolderChooser.addActionListener(new ActionListener(){
-                      public void actionPerformed(ActionEvent arg0) {
-                          FileDialog fd = new FileDialog(self, "Choose a folder", FileDialog.SAVE);
-                          fd.setVisible(true);
-                          String foldername = fd.getDirectory();
-                          if (foldername!=null) {
-                              tfFolder.setText(foldername);
-                          }
-                      }
-               });
-               p_1.add(btnFolderChooser);
-               
-               Panel p_2 = new Panel(new FlowLayout(FlowLayout.LEADING));
-               p_input.add(p_2);
-               l = new Label("Number of clients ");
-               l.setAlignment(Label.LEFT);
-               p_2.add(l);
-
-               tfClientNum.setPreferredSize(new Dimension(75,25));
-               clientNumber = Integer.parseInt(prop.getProperty( "Number_of_clients", "1000"));
-               tfClientNum.setModel(new SpinnerNumberModel( (Number) clientNumber, 10, 100000, 1));
-               tfClientNum.addChangeListener(new ChangeListener() {
-                public void stateChanged(ChangeEvent e) {clientNumber = (int) tfClientNum.getValue();}
-               });
-         
-               p_2.add(tfClientNum);
-               
-         Panel p_buttons = new Panel();
-         p_buttons.setLayout(new BoxLayout(p_buttons,BoxLayout.PAGE_AXIS));
-         p_top.add(p_buttons, BorderLayout.EAST);
-         
-         Dimension p_buttons_dim = new Dimension(120,80);
-         Dimension button_dim    = new Dimension(110,30);
-         
-         p_buttons.setMinimumSize(p_buttons_dim);
-         p_buttons.setPreferredSize(p_buttons_dim);
-         p_buttons.setMaximumSize(p_buttons_dim);
-       
-         Button btnExit = new Button();
-         btnExit.setLabel("Exit");
-         btnExit.setMaximumSize(button_dim);
-         btnExit.addActionListener(new ActionListener() {
-             public void actionPerformed(ActionEvent e)
-             {
-                 onClose();
-             }
-          });
-         
-         Component verticalStrut = Box.createVerticalStrut(5);
-         p_buttons.add(verticalStrut);
-         p_buttons.add(btnExit);
-         
-         
-         btnCalc.setLabel("Calculate");
-         btnCalc.setActionCommand("Calculate");
-
-         btnCalc.setMaximumSize(button_dim);
-         btnCalc.addActionListener(new ActionListener() {
-             public void actionPerformed(ActionEvent e)
-             {
-                 if (e.getActionCommand() == "Calculate") {
-                    calculate();
-                 } else {
-                    if (runthreads != null) {
-                        runthreads.stop_execition = true;
-                        log.warn("Calculation was stopped by User. Please wait for stoping...");
-                    }
-                 }
-             }
-          });
-         
-         Component verticalStrut_1 = Box.createVerticalStrut(5);
-         p_buttons.add(verticalStrut_1);
-         p_buttons.add(btnCalc);
-         
-         
-         Panel p_log = new Panel(new BorderLayout());
+       Property prop = Property.getInstance();
         
-         getContentPane().add(p_log,BorderLayout.CENTER);
-         ta_log = new TextArea();
-         ta_log.setEditable(false);
-         p_log.add(ta_log,BorderLayout.CENTER);
+       getContentPane().setLayout(new BorderLayout());
+        
+       Panel p_top = new Panel(new BorderLayout());
+       getContentPane().add(p_top, BorderLayout.PAGE_START);
+        
+       Panel p_input = new Panel(new GridLayout(3,1));
+       p_top.add(p_input, BorderLayout.CENTER);
+
+       p_input.setMinimumSize(new Dimension(640,100));
+       p_input.setPreferredSize(new Dimension(640,100));
+       p_input.setMaximumSize(new Dimension(640,100));
+         
+       Panel p = new Panel(new FlowLayout(FlowLayout.LEADING));
+       p_input.add(p);
+       Label l = new Label("Period from   ");
+       l.setAlignment(Label.LEFT);
+       p.add(l);
+   
+       for (Integer i=2014;i<2019;i++) {
+           ch_from_y.addItem(i.toString());
+           ch_to_y.addItem(i.toString());
+       }
+       
+       for (Integer i=1;i<=12;i++) {
+           ch_from_m.addItem(i.toString());
+           ch_to_m.addItem(i.toString());
+       }
+       
+       ch_from_y.addItemListener(new ItemListener(){
+              public void itemStateChanged(ItemEvent arg0) { from_y = Integer.valueOf(ch_from_y.getSelectedItem()); }
+       });
+       ch_from_m.addItemListener(new ItemListener(){
+              public void itemStateChanged(ItemEvent arg0) { from_m = Integer.valueOf(ch_from_m.getSelectedItem()); }
+       });
+       ch_to_y.addItemListener(new ItemListener(){
+              public void itemStateChanged(ItemEvent arg0) { to_y = Integer.valueOf(ch_to_y.getSelectedItem()); }
+       });
+       ch_to_m.addItemListener(new ItemListener(){
+              public void itemStateChanged(ItemEvent arg0) { to_m = Integer.valueOf(ch_to_m.getSelectedItem()); }
+       });
+       ch_from_y.select(0);
+       ch_from_m.select(0);
+       ch_to_y.select(0);
+       ch_to_m.select(0);
+       
+       p.add(ch_from_y);
+       p.add(ch_from_m);
+       p.add(new Label(" to "));
+       p.add(ch_to_y);
+       p.add(ch_to_m);
+       
+       Panel p_1 = new Panel(new FlowLayout(FlowLayout.LEADING));
+       p_input.add(p_1);
+       l = new Label("Output folder ");
+       l.setAlignment(Label.LEFT);
+       p_1.add(l);
+       
+       
+       tfFolder.setPreferredSize(new Dimension(380,25));
+       outfolder = prop.getProperty("OutputFolder","");
+       tfFolder.addTextListener(new TextListener()
+       {
+                public void textValueChanged(TextEvent arg0) { outfolder = tfFolder.getText(); }
+       });
+       tfFolder.setText(outfolder);
+       p_1.add(tfFolder);
+       
+       Button btnFolderChooser = new Button("...");
+       btnFolderChooser.addActionListener(new ActionListener()
+       {
+              public void actionPerformed(ActionEvent arg0) {
+                  FileDialog fd = new FileDialog(self, "Choose a folder", FileDialog.SAVE);
+                  fd.setVisible(true);
+                  String foldername = fd.getDirectory();
+                  if (foldername!=null) {
+                      tfFolder.setText(foldername);
+                  }
+              }
+       });
+       p_1.add(btnFolderChooser);
+       
+       Panel p_2 = new Panel(new FlowLayout(FlowLayout.LEADING));
+       p_input.add(p_2);
+       l = new Label("Number of clients ");
+       l.setAlignment(Label.LEFT);
+       p_2.add(l);
+
+       spnClientNum.setPreferredSize(new Dimension(75,25));
+       clientNumber = Integer.parseInt(prop.getProperty( "Number_of_clients", "1000"));
+           spnClientNum.setModel(new SpinnerNumberModel( (Number) clientNumber, 10, 100000, 1));
+           spnClientNum.addChangeListener(new ChangeListener()
+           {
+            public void stateChanged(ChangeEvent e) {clientNumber = (int) spnClientNum.getValue();}
+           });
+     
+       p_2.add(spnClientNum);
+  
+       l = new Label("               Number of threads ");
+       l.setAlignment(Label.RIGHT);
+       p_2.add(l);
+
+       spnTreadsNum.setPreferredSize(new Dimension(75,25));
+       spnTreadsNum.setModel(new SpinnerNumberModel( 1, 1, 8, 1));
+       spnTreadsNum.addChangeListener(new ChangeListener()
+       {
+         public void stateChanged(ChangeEvent e) {threadsnum = (int) spnTreadsNum.getValue();}
+       });
+       p_2.add(spnTreadsNum);
+               
+               
+       Panel p_buttons = new Panel();
+       p_buttons.setLayout(new BoxLayout(p_buttons,BoxLayout.PAGE_AXIS));
+       p_top.add(p_buttons, BorderLayout.EAST);
+         
+       Dimension p_buttons_dim = new Dimension(120,80);
+       Dimension button_dim    = new Dimension(110,30);
+         
+       p_buttons.setMinimumSize(p_buttons_dim);
+       p_buttons.setPreferredSize(p_buttons_dim);
+       p_buttons.setMaximumSize(p_buttons_dim);
+       
+       Button btnExit = new Button();
+       btnExit.setLabel("Exit");
+       btnExit.setMaximumSize(button_dim);
+       btnExit.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e)
+           {
+               onClose();
+           }
+        });
+        
+       Component verticalStrut = Box.createVerticalStrut(5);
+       p_buttons.add(verticalStrut);
+       p_buttons.add(btnExit);
+         
+         
+       btnCalc.setLabel("Calculate");
+       btnCalc.setActionCommand("Calculate");
+
+       btnCalc.setMaximumSize(button_dim);
+       btnCalc.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e)
+           {
+               if (e.getActionCommand() == "Calculate") {
+                  calculate();
+               } else {
+                  if (runthreads != null) {
+                      runthreads.stop_execition = true;
+                      log.warn("Calculation was stopped by User. Please wait for stoping...");
+                  }
+               }
+           }
+        });
+        
+       Component verticalStrut_1 = Box.createVerticalStrut(5);
+       p_buttons.add(verticalStrut_1);
+       p_buttons.add(btnCalc);
+         
+         
+       Panel p_log = new Panel(new BorderLayout());
+        
+       getContentPane().add(p_log,BorderLayout.CENTER);
+       ta_log = new TextArea();
+       ta_log.setEditable(false);
+       p_log.add(ta_log,BorderLayout.CENTER);
  
     }
     
