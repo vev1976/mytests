@@ -63,7 +63,6 @@ public class MainWindow extends JFrame
             Calendar abzugdatum = Calendar.getInstance();
             int y1 = from_y,m1 = from_m, y2 = to_y, m2 = to_m;
             
-            DB2_Interface db = DB2_Interface.getInstance();
             try
             {
                 runthreads = this;
@@ -77,7 +76,7 @@ public class MainWindow extends JFrame
                       Thread[] threads = new Thread[threadsnum];
                       for (int i=0;i<threads.length;i++){
                              abzugdatum.set(y1, m1 - 1, 01);
-                             GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),clientNumber,db);
+                             GenFiles gn = new GenFiles(outfolder,abzugdatum.getTime(),clientNumber);
                              //gn.generate();
                              threads[i] = new Thread(gn,String.format("01/%02d/%d",m1,y1));
                              threads[i].start();

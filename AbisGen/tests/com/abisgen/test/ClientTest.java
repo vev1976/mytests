@@ -26,13 +26,13 @@ public class ClientTest {
         InputParams.setDB_Connection_String(con_str);
         db = DB2_Interface.getInstance();
         
-        if (!db.tryConnect()) org.junit.Assert.fail("connection error");
+        if (!db.tryConnect()) org.junit.Assert.fail("DB connection error");
     }
     
     @Test
     public void testGenerating()
     {
-        cl.generateValues(db);
+        cl.generate_values();
         String res = cl.toString();
         String[] arr = res.split(";");
         for(int i=0;i<arr.length;i++)

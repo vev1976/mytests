@@ -1,5 +1,6 @@
 package com.abisgen.main;
 
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 
 
 
-public class Client {
+public class Client implements DataObject{
 
     @FieldCaption("Abzugdatum")
     private Date Abzugdatum;
@@ -162,8 +163,9 @@ public class Client {
         this.Last_Account_Number=num;
     }
     
-    public void generateValues(DB2_Interface db)
+    public void generate_values()
     {
+        DB2_Interface db = DB2_Interface.getInstance();
         Random rnd = new Random();
         Calendar cal = new GregorianCalendar();
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -312,51 +314,13 @@ public class Client {
                 }
             }
         }
-        /*str= formatter.format(Abzugdatum) + ';' +
-             Kundennummer + ';' +
-             Anredeschlessel + ";" +
-             AP_Kundenbetreuer + ";" +
-             AP_Sachbearbeiter + ";" +
-             Bankint_Klassifiz + ";" +
-             Berufszw_Arbeitgb + ";" +
-             Branche_Beruf + ";" +
-             formatter.format(Datum_Kundenanlage) + ";" +
-             Devisenstatusschl + ";" +
-             Familienstand + ";" +
-             formatter.format(Geburtsdatum) + ";" +
-             Gemeinschaftskunde + ";" +
-             Geschlecht + ";" +
-             formatter.format(Grendung_am) + ";" +
-             Geterstand + ";" +
-             Konditions_Gruppe + ";" +
-             Kundenart + ";" +
-             Kundenbonitat + ";" +
-             Kundenfiliale + ";" +
-             Kundengruppe + ";" +
-             Kundensegment + ";" +
-             Kundentyp + ";" +
-             Landerschlessel + ";" +
-             Nachname + ";" +
-             Name1_Teil + ";" +
-             Name2_Teil + ";" +
-             Ort + ";" +
-             PLZ + ";" +
-             Rechtsformschless + ";" +
-             Risikogruppenschl + ";" +
-             Sortiername + ";" +
-             StaatsangehUrigk + ";" +
-             Status + ";" +
-             Steuerinlander + ";" +
-             Stlg_Erwerbsleben + ";" +
-             Vorname + ";" +
-             Organ_Mitarb_Sl + ";" +
-             Employee_key + ";" +
-             Kunden_Status + ";" +
-             Kz_Groekredit + ";" +
-             Kz_Millionenkredit + ";";
-          */
+     
         return str;
-        
+    }
+    
+    public void save_to_file(PrintWriter pw)
+    {
+        pw.append(this.toString()+'\n');
     }
     
 }

@@ -1,11 +1,12 @@
 package com.abisgen.main;
 
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class Account {
+public class Account implements DataObject{
 
 @FieldCaption("Abzugdatum")
 private	Date Abzugdatum;
@@ -216,49 +217,12 @@ public String toString()
           }
       }
   }
-
-  /*s =   frm.format(Abzugdatum) + ";" +
-        Kontonummer + ";" +
-        Skontronummer + ";" +
-        Hauptbuchkontonr + ";" +
-        Werung_Hauptbuch + ";" +
-        Depot_Kontonummer + ";" +
-        DepotSkontronummer + ";" +
-        WP_Kennr_Depot + ";" +
-        Derivat_BBS_Konto + ";" +
-        frm.format(Datum_Kt_Zeitr_bis) + ";" +
-        Schl_Bilanz_Seite + ";" +
-        BBS_Sts_Konto + ";" +
-        BVR_Kto_Nr_Ztr + ";" +
-        DS_Eff_Saldo_Jahr + ";" +
-        DS_Eff_Saldo_Mon + ";" +
-        DS_Nom_Saldo_Jahr + ";" +
-        DS_Nom_Saldo_Mon + ";" +
-        DS_Val_Saldo_Jahr + ";" +
-        DS_Val_Saldo_Mon + ";" +
-        DS_Val_Sld_30_Tg + ";" +
-        DS_Zins_Val_Jhr + ";" +
-        DS_Zins_Val_Mon + ";" +
-        Eff_Saldo + ";" +
-        Eff_Zins_DS_Jahr + ";" +
-        Eff_Zins_DS_Monat + ";" +
-        Eff_Zinsen_Jahr + ";" +
-        Eff_Zinsen_Mon + ";" +
-        Eff_Zinsen_STG + ";" +
-        Effektivzinss_Ztr + ";" +
-        Fremdmittelbtr_Ztr + ";" +
-        K_marge_DS_Jahr + ";" +
-        K_marge_DS_Monat + ";" +
-        Kz_Festzins_Ztr + ";" +
-        Kz_Kontokorrektur + ";" +
-        Val_Zinsen_Jahr + ";" +
-        Val_Zinsen_Mon + ";" +
-        Val_Zinsen_STG + ";" +
-        Valutasaldo + ";" +
-        Zinssatz_nominell + ";" +
-        Nominal_Saldo;
-  */
   return str;
+}
+
+public void save_to_file(PrintWriter pw)
+{
+    pw.append(this.toString()+'\n');
 }
 
 

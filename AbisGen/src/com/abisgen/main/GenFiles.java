@@ -10,25 +10,25 @@ import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
 
+import com.abisgen.main.Product.ProductTypes;
+
 public class GenFiles
       implements Runnable
 {
     private String filespath;
     private Date abzugdatum;
     private int Count;
-    private DB2_Interface db;
     private String KD_Caption;
     private String KT_Caption;
     private String ST_Caption;
 
     private Logger log = Logging.getLogger(GenFiles.class.getName());
     
-    public GenFiles(String filespath, Date abzugdatum,int count,DB2_Interface db)
+    public GenFiles(String filespath, Date abzugdatum,int count)
     {
         this.filespath = filespath;
         this.abzugdatum = abzugdatum;
         this.Count = count;
-        this.db = db;
         ST_Caption = GetCaptions(Account.class);
         KD_Caption = GetCaptions(Client.class);
         KT_Caption = GetCaptions(Product.class);
@@ -85,30 +85,29 @@ public class GenFiles
             for (int i=1;i<=Count;i++)
             {
                Client cl = new Client(this.abzugdatum,i);
-               cl.generateValues(db);
+               cl.generate_values();
                
-               Product prod11 = new Product(this.abzugdatum,cl,1,1);
-               Product prod12 = new Product(this.abzugdatum,cl,1,2);
-               Product prod21 = new Product(this.abzugdatum,cl,2,1);
-               Product prod22 = new Product(this.abzugdatum,cl,2,2);
+               Product prod11 = new Product(this.abzugdatum,cl,ProductTypes.Active,1);
+               Product prod12 = new Product(this.abzugdatum,cl,ProductTypes.Active,2);
+               Product prod21 = new Product(this.abzugdatum,cl,ProductTypes.Passive,1);
+               Product prod22 = new Product(this.abzugdatum,cl,ProductTypes.Passive,2);
                
                prod11.generate_values();
                prod12.generate_values();
                prod21.generate_values();
                prod22.generate_values();
                
-               abiskd.append(cl.toString()+'\n');
+               cl.save_to_file(abiskd);
                
-               abiskt.append(prod11.toString()+'\n');
-               abiskt.append(prod12.toString()+'\n');
-               abiskt.append(prod21.toString()+'\n');
-               abiskt.append(prod22.toString()+'\n');
-               
-               abisst.append(prod11.getAccount().toString()+'\n');
-               abisst.append(prod12.getAccount().toString()+'\n');
-               abisst.append(prod21.getAccount().toString()+'\n');
-               abisst.append(prod22.getAccount().toString()+'\n');
-               
+               prod11.save_to_file(abiskt);
+               prod12.save_to_file(abiskt);
+               prod21.save_to_file(abiskt);
+               prod22.save_to_file(abiskt);
+              
+               prod11.getAccount().save_to_file(abisst);
+               prod12.getAccount().save_to_file(abisst);
+               prod21.getAccount().save_to_file(abisst);
+               prod22.getAccount().save_to_file(abisst);
             }
         }
         finally
@@ -118,8 +117,6 @@ public class GenFiles
             abisst.close();
         }
         log.info(String.format("Data for 01/%02d/%d has been generated!",abzug.get(Calendar.MONTH)+1,abzug.get(Calendar.YEAR)));
-
-        
     }
 
     @Override

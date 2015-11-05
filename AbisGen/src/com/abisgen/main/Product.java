@@ -1,12 +1,14 @@
 package com.abisgen.main;
 
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-public class Product {
+public class Product implements DataObject{
+    
     @FieldCaption("Abzugdatum")
     private Date Abzugdatum;
 
@@ -96,24 +98,39 @@ public class Product {
     
     @FieldCaption("Kurs FW fo 1 EURO")
     private float Kurs_FW_1_EURO;
+    
+    public enum ProductTypes {
+        Active(1), Passive(2);
+        
+        private int val;
+        ProductTypes(int t) {
+            val = t;
+        }
+        public int value_int()
+        {
+            return val;
+        }
+        public char value_char()
+        {
+            return (val==1?'A':'P');
+        }
+
+    }
 
     private Account acc;
     
-    public Product(Date abzugdatum,Client cl, int prod_group, int prod_num)
+    public Product(Date abzugdatum,Client cl, ProductTypes prod_group, int prod_num)
     {
         int AccNumber;
         
         this.Abzugdatum = abzugdatum;
         this.Kundennummer = cl.getClientID();
-        this.Produktbereich = prod_group;
+        this.Produktbereich = prod_group.value_int();
         this.Produktnummer = prod_num;
         
         AccNumber = cl.getLast_Account_Number()+1;
-        if (prod_group==1)
-           acc = new Account(abzugdatum, this.Kundennummer*100+AccNumber,'A');
-        else
-           acc = new Account(abzugdatum, this.Kundennummer*100+AccNumber,'P');
-
+        acc = new Account(abzugdatum, this.Kundennummer*100+AccNumber,prod_group.value_char());
+ 
         this.Kontonummer = this.Kundennummer*100 + AccNumber;
         cl.setLast_Account_Number(AccNumber);
         
@@ -212,40 +229,13 @@ public class Product {
                 }
             }
         }
-        
-   /*     s = frm.format(Abzugdatum) + ";" +
-            Kontonummer + ";" +
-            Skontronummer + ";" +
-            frm.format(Ederungsdatum) + ";" +
-            BVR_Kto_Nr + ";" +
-            frm.format(Dat_lzt_Buchung) + ";" +
-            frm.format(Dat_lzt_Umsatz) + ";" +
-            frm.format(Datum_der_Anlage) + ";" +
-            frm.format(Datum_Auflung) + ";" +
-            EURO_Konto + ";" +
-            Filiale + ";" +
-            Frist_vereinb_LFZ + ";" +
-            Fristigkeit_Restl + ";" +
-            Geschatsart + ";" +
-            INA_Kr_Auival_sum + ";" +
-            frm.format(Jur_Laufzeitende) + ";" +
-            Kapitalsaldo + ";" +
-            Kontostatus + ";" +
-            Kundennummer + ";" +
-            Laufzeit_Jahre + ";" +
-            Laufzeit_Tage + ";" +
-            frm.format(Laufzeitende_echt) + ";" +
-            negativer_Kap_Sald + ";" +
-            positiver_Kap_Sald + ";" +
-            Produktbereich + ";" +
-            Produktnummer + ";" +
-            Sachbearbeiter + ";" +
-            Werung_des_Kontos + ";" +
-            Werung + ";" +
-            Kurs_FW_1_EURO;
-     */
+    
         return str;
     }
     
+    public void save_to_file(PrintWriter pw)
+    {
+      pw.append(this.toString()+'\n');
+    }
     
 }
